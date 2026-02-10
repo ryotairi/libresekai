@@ -1,0 +1,170 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  userId     BigInt @unique
+  credential String
+
+  signature       String
+  platform        String
+  deviceModel     String
+  operatingSystem String
+
+  registeredAt DateTime @default(now())
+
+  gameData       UserGameData?    @relation(fields: [userGameDataUserId], references: [userId])
+  boost          UserBoostStatus? @relation(fields: [userBoostStatusUserId], references: [userId])
+  tutorialStatus String          @default("start")
+
+  name                  String
+  userGameDataUserId    BigInt?
+  userBoostStatusUserId BigInt?
+
+  @@map("users")
+}
+
+model UserBoostStatus {
+  userId     BigInt   @unique
+  current    Int
+  recoveryAt DateTime
+  users      User[]
+
+  @@map("users_boost")
+}
+
+model UserGameData {
+  userId BigInt @unique
+
+  deck        Int @default(1)
+  rank        Int @default(1)
+  exp         Int @default(0)
+  totalExp    Int @default(0)
+  coin        Int @default(0)
+  virtualCoin Int @default(0)
+
+  decks UserDeck[]
+  users User[]
+
+  @@map("users_game_data")
+}
+
+/**
+ * {
+ * "userId": 714846936821514200,
+ * "cardId": 105,
+ * "level": 1,
+ * "exp": 0,
+ * "totalExp": 0,
+ * "skillLevel": 1,
+ * "skillExp": 0,
+ * "totalSkillExp": 0,
+ * "masterRank": 0,
+ * "specialTrainingStatus": "not_doing",
+ * "defaultImage": "original",
+ * "duplicateCount": 0,
+ * "createdAt": 1770650790950,
+ * "episodes": [
+ * {
+ * "cardEpisodeId": 209,
+ * "scenarioStatus": "unreleased",
+ * "scenarioStatusReasons": [],
+ * "isNotSkipped": false
+ * },
+ * {
+ * "cardEpisodeId": 210,
+ * "scenarioStatus": "can_not_read",
+ * "scenarioStatusReasons": [
+ * "unread_before_scenario",
+ * "not_enough_release_condition"
+ * ],
+ * "isNotSkipped": false
+ * }
+ * ]
+ * }
+ */
+
+model CardEpisode {
+  id                    String  @id
+  cardEpisodeId         Int
+  scenarioStatus        String // unreleased
+  scenarioStatusReasons Json // []
+  isNotSkipped          Boolean
+  card                  Card?   @relation(fields: [cardId], references: [id])
+  cardId                String?
+
+  @@map("card_episodes")
+}
+
+model Card {
+  id String @id
+
+  userId                BigInt
+  cardId                Int
+  level                 Int
+  exp                   Int
+  totalExp              Int
+  skillLevel            Int
+  skillExp              Int
+  totalSkillExp         Int
+  masterRank            Int
+  specialTrainingStatus String // not_doing
+  defaultImage          String // original
+  duplicateCount        Int
+  createdAt             DateTime      @default(now())
+  episodes              CardEpisode[]
+
+  @@map("cards")
+}
+
+/**
+ * {
+ * "userId": 714846936821514200,
+ * "deckId": 1,
+ * "name": "Group 01",
+ * "leader": 81,
+ * "subLeader": 89,
+ * "member1": 81,
+ * "member2": 89,
+ * "member3": 93,
+ * "member4": 97,
+ * "member5": 101
+ * }
+ */
+
+model UserDeck {
+  uniqueDeckId String @id
+
+  userId             String
+  deckId             Int
+  name               String
+  members            Int[] // member1, member2, member3, member4, member5
+  userGameData       UserGameData? @relation(fields: [userGameDataUserId], references: [userId])
+  userGameDataUserId BigInt?
+
+  @@map("user_decks")
+}
+
+model UserMusic {
+  uniqueMusicId String @id
+
+  userId  BigInt
+  musicId Int
+
+  vocals                Int[]
+  availableDifficulties String[] @default(["easy", "normal", "hard", "expert"]) // manually add append. master upon unlock.
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

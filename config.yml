@@ -1,0 +1,34 @@
+apiPort: 4455
+webPort: 4456
+versionPort: 4457
+maintenanceStatus: 'maintenance_out'
+
+#          'n-production-game-api.sekai-en.com'
+apiDomain: 'libre-sekai-game-api.rustyraven.pw'
+
+#          'n-production-web.sekai-en.com'
+webDomain: 'sekai-web-files.rustyraven.pw' # must be 29 characters long
+
+versions:
+  - systemProfile: 'production'
+    appVersion: '5.0.5'
+    multiPlayVersion: 'len'
+    assetVersion: '5.0.51.0'
+    appVersionStatus: 'available'
+
+legal:
+  privacyPolicy: 'https://rustyraven.pw'
+  termsOfUse: 'https://rustyraven.pw'
+
+informations:
+  - id: 1
+    seq: 1
+    informationType: normal
+    informationTag: information 
+    browseType: 'external'
+    platform: 'all'
+    title: 'Welcome to Libre SEKAI powered server!'
+    path: 'https://github.com/ryotairi/libresekai'
+    startAt: 0
+
+initialPlayerName: 'SEKAI Player'
