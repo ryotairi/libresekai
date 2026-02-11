@@ -148,7 +148,7 @@ model Card {
 model UserDeck {
   uniqueDeckId String @id
 
-  userId             String
+  userId             BigInt
   deckId             Int
   name               String
   members            Int[] // member1, member2, member3, member4, member5

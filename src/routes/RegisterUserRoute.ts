@@ -7,6 +7,7 @@ import { generateUserId } from '../utils/random';
 import { readFileSync } from 'fs';
 import { DIFFICULTIES } from '../consts/MusicCons';
 import { randomUUID } from 'crypto';
+import { convertDeckToSekaiDeck } from '../utils/payloads';
 
 const initialAreas = JSON.parse(readFileSync('./json/initialUserAreas.json', 'utf-8'));
 
@@ -143,7 +144,19 @@ export default async function RegisterUserRoute(req: Request, res: Response) {
         });
     }
 
-    const userDecks: any[] = [];
+    const deck = await prisma.userDeck.create({
+        data: {
+            uniqueDeckId: randomUUID(), // not used by client, only for server internal use
+            userId: user.userId,
+            deckId: 1,
+            name: 'Group 01',
+            members: userCards.slice(0, 5).map(card => card.cardId),
+        }
+    });
+
+    const userDecks: any[] = [
+        deck
+    ];
     const userMusics: any[] = [];
 
     const musics = await prisma.userMusic.findMany({
@@ -198,7 +211,7 @@ export default async function RegisterUserRoute(req: Request, res: Response) {
                 },
                 userAreas: user.areas, // TODO proper areas handling
                 userCards,
-                userDecks,
+                userDecks: userDecks.map(convertDeckToSekaiDeck),
                 userMusics
             }
         })
