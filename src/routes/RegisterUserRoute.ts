@@ -5,6 +5,8 @@ import { config } from '../config';
 import { randomCredentialString } from '../utils/credentials';
 import { generateUserId } from '../utils/random';
 import { readFileSync } from 'fs';
+import { DIFFICULTIES } from '../consts/MusicCons';
+import { randomUUID } from 'crypto';
 
 const initialAreas = JSON.parse(readFileSync('./json/initialUserAreas.json', 'utf-8'));
 
@@ -92,12 +94,34 @@ export default async function RegisterUserRoute(req: Request, res: Response) {
         registeredAt: user.registeredAt
     };
 
+    // TODO: randomise free cards, probably based on which unit they select (idk how thats passed to the server tho.)
+    // units: leo/need, more more jump, vivid bad squad, wonderlands x showtime, nightcord at 25:00
+    for (const cardId of config.initialFreeCards) {
+        await prisma.card.create({
+            data: {
+                id: randomUUID(), // not used by client, only for server internal use
+                userId: user.userId,
+                cardId,
+                level: 1,
+                exp: 0,
+                totalExp: 0,
+                skillLevel: 1,
+                skillExp: 0,
+                totalSkillExp: 0,
+                masterRank: 0,
+                specialTrainingStatus: 'not_doing',
+                defaultImage: 'original',
+                duplicateCount: 0,
+            }
+        });
+    }
+
     const cards = await prisma.card.findMany({
         where: {
             userId: user.userId
         }
     });
-    
+
     const userCards = [];
 
     for (const card of cards) {
@@ -120,10 +144,7 @@ export default async function RegisterUserRoute(req: Request, res: Response) {
     }
 
     const userDecks: any[] = [];
-
     const userMusics: any[] = [];
-
-    // TODO: implement initial cards, creating initial deck with random cards
 
     const musics = await prisma.userMusic.findMany({
         where: {
@@ -135,7 +156,14 @@ export default async function RegisterUserRoute(req: Request, res: Response) {
         userMusics.push({
             userId: music.userId,
             musicId: music.musicId,
-            userMusicDifficultyStatuses: [], // TODO implement difficulties
+            userMusicDifficultyStatuses: DIFFICULTIES.map((diffuculty) => ({
+                musicId: music.musicId,
+                musicDifficulty: diffuculty,
+                musicDifficultyStatus: music.availableDifficulties.includes(diffuculty)
+                    ? 'available'
+                    : 'forbidden',
+                userMusicResults: [], // no idea on that rn
+            })), // TODO implement difficulties
             userMusicVocals: [], // TODO implement vocals
             userMusicAchievements: [], // TODO implement achievements
             createdAt: Math.floor(music.createdAt.getTime() / 1000),

@@ -27,8 +27,10 @@ informations:
     informationTag: information 
     browseType: 'external'
     platform: 'all'
-    title: 'Welcome to Libre SEKAI powered server!'
+    title: 'Welcome to libresekai powered server!'
     path: 'https://github.com/ryotairi/libresekai'
     startAt: 0
 
 initialPlayerName: 'SEKAI Player'
+
+initialFreeCards: [81, 89, 93, 97, 101, 105] # No idea on what these are for, but they were in registration response body. I've picked Leo/need btw

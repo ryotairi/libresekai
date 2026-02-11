@@ -37,6 +37,8 @@ type Config = {
     };
     informations: ApiInformation[];
     initialPlayerName: string;
+
+    initialFreeCards: number[];
 };
 
 const configFile = fs.readFileSync('./config.yml', 'utf-8');
