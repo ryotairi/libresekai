@@ -4,6 +4,9 @@ import { prisma } from '../services/prisma';
 import { config } from '../config';
 import { randomCredentialString } from '../utils/credentials';
 import { generateUserId } from '../utils/random';
+import { readFileSync } from 'fs';
+
+const initialAreas = JSON.parse(readFileSync('./json/initialUserAreas.json', 'utf-8'));
 
 type RegisterUserPayload = {
     platform: string;
@@ -38,6 +41,7 @@ export default async function RegisterUserRoute(req: Request, res: Response) {
             credential: randomCredentialString(),
             signature: randomCredentialString(),
             userId: generateUserId(),
+            areas: initialAreas
         }
     });
 
@@ -88,6 +92,57 @@ export default async function RegisterUserRoute(req: Request, res: Response) {
         registeredAt: user.registeredAt
     };
 
+    const cards = await prisma.card.findMany({
+        where: {
+            userId: user.userId
+        }
+    });
+    
+    const userCards = [];
+
+    for (const card of cards) {
+        userCards.push({
+            userId: card.userId,
+            cardId: card.cardId,
+            level: card.level,
+            exp: card.exp,
+            totalExp: card.totalExp,
+            skillLevel: card.skillLevel,
+            skillExp: card.skillExp,
+            totalSkillExp: card.totalSkillExp,
+            masterRank: card.masterRank,
+            specialTrainingStatus: card.specialTrainingStatus,
+            defaultImage: card.defaultImage,
+            duplicateCount: card.duplicateCount,
+            createdAt: Math.floor(card.createdAt.getTime() / 1000),
+            episodes: [] // TODO implement episodes
+        });
+    }
+
+    const userDecks: any[] = [];
+
+    const userMusics: any[] = [];
+
+    // TODO: implement initial cards, creating initial deck with random cards
+
+    const musics = await prisma.userMusic.findMany({
+        where: {
+            userId: user.userId
+        }
+    });
+
+    for (const music of musics) {
+        userMusics.push({
+            userId: music.userId,
+            musicId: music.musicId,
+            userMusicDifficultyStatuses: [], // TODO implement difficulties
+            userMusicVocals: [], // TODO implement vocals
+            userMusicAchievements: [], // TODO implement achievements
+            createdAt: Math.floor(music.createdAt.getTime() / 1000),
+            updatedAt: Math.floor(music.updatedAt.getTime() / 1000)
+        });
+    }
+
     res.send(
         encrypt({
             userRegistration,
@@ -107,8 +162,16 @@ export default async function RegisterUserRoute(req: Request, res: Response) {
                     virtualCoin: gameData.virtualCoin
                 },
                 userBoost: {
-
-                }
+                    current: boostData.current,
+                    recoveryAt: Math.floor(boostData.recoveryAt.getTime() / 1000),
+                },
+                userTutorial: {
+                    tutorialStatus: user.tutorialStatus, // its always "start"
+                },
+                userAreas: user.areas, // TODO proper areas handling
+                userCards,
+                userDecks,
+                userMusics
             }
         })
     );

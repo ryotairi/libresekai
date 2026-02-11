@@ -1,0 +1,291 @@
+[
+    {
+        "areaId": 1,
+        "actionSets": [],
+        "areaItems": [],
+        "userAreaStatus": {
+            "areaId": 1,
+            "status": "released"
+        }
+    },
+    {
+        "areaId": 2,
+        "actionSets": [],
+        "areaItems": [],
+        "userAreaStatus": {
+            "areaId": 2,
+            "status": "released"
+        }
+    },
+    {
+        "areaId": 3,
+        "actionSets": [],
+        "areaItems": [],
+        "userAreaStatus": {
+            "areaId": 3,
+            "status": "released"
+        }
+    },
+    {
+        "areaId": 4,
+        "actionSets": [],
+        "areaItems": [],
+        "userAreaStatus": {
+            "areaId": 4,
+            "status": "released"
+        }
+    },
+    {
+        "areaId": 5,
+        "actionSets": [],
+        "areaItems": [],
+        "userAreaStatus": {
+            "areaId": 5,
+            "status": "released",
+            "userAreaPlaylistStatus": {
+                "areaPlaylistId": 1,
+                "status": "unreleased"
+            }
+        }
+    },
+    {
+        "areaId": 7,
+        "actionSets": [],
+        "areaItems": [],
+        "userAreaStatus": {
+            "areaId": 7,
+            "status": "released",
+            "userAreaPlaylistStatus": {
+                "areaPlaylistId": 2,
+                "status": "unreleased"
+            }
+        }
+    },
+    {
+        "areaId": 8,
+        "actionSets": [],
+        "areaItems": [],
+        "userAreaStatus": {
+            "areaId": 8,
+            "status": "released",
+            "userAreaPlaylistStatus": {
+                "areaPlaylistId": 3,
+                "status": "unreleased"
+            }
+        }
+    },
+    {
+        "areaId": 9,
+        "actionSets": [],
+        "areaItems": [],
+        "userAreaStatus": {
+            "areaId": 9,
+            "status": "released",
+            "userAreaPlaylistStatus": {
+                "areaPlaylistId": 4,
+                "status": "unreleased"
+            }
+        }
+    },
+    {
+        "areaId": 10,
+        "actionSets": [],
+        "areaItems": [],
+        "userAreaStatus": {
+            "areaId": 10,
+            "status": "released",
+            "userAreaPlaylistStatus": {
+                "areaPlaylistId": 5,
+                "status": "unreleased"
+            }
+        }
+    },
+    {
+        "areaId": 11,
+        "actionSets": [],
+        "areaItems": [],
+        "userAreaStatus": {
+            "areaId": 11,
+            "status": "released"
+        }
+    },
+    {
+        "areaId": 12,
+        "actionSets": [],
+        "areaItems": [],
+        "userAreaStatus": {
+            "areaId": 12,
+            "status": "released"
+        }
+    },
+    {
+        "areaId": 13,
+        "actionSets": [],
+        "areaItems": [],
+        "userAreaStatus": {
+            "areaId": 13,
+            "status": "released"
+        }
+    },
+    {
+        "areaId": 14,
+        "actionSets": [],
+        "areaItems": [],
+        "userAreaStatus": {
+            "areaId": 14,
+            "status": "released",
+            "userAreaPlaylistStatus": {
+                "areaPlaylistId": 6,
+                "status": "unreleased"
+            }
+        }
+    },
+    {
+        "areaId": 15,
+        "actionSets": [],
+        "areaItems": [],
+        "userAreaStatus": {
+            "areaId": 15,
+            "status": "released"
+        }
+    },
+    {
+        "areaId": 16,
+        "actionSets": [],
+        "areaItems": [],
+        "userAreaStatus": {
+            "areaId": 16,
+            "status": "released"
+        }
+    },
+    {
+        "areaId": 17,
+        "actionSets": [],
+        "areaItems": [],
+        "userAreaStatus": {
+            "areaId": 17,
+            "status": "released",
+            "userAreaPlaylistStatus": {
+                "areaPlaylistId": 7,
+                "status": "unreleased"
+            }
+        }
+    },
+    {
+        "areaId": 18,
+        "actionSets": [],
+        "areaItems": [],
+        "userAreaStatus": {
+            "areaId": 18,
+            "status": "released",
+            "userAreaPlaylistStatus": {
+                "areaPlaylistId": 8,
+                "status": "unreleased"
+            }
+        }
+    },
+    {
+        "areaId": 19,
+        "actionSets": [],
+        "areaItems": [],
+        "userAreaStatus": {
+            "areaId": 19,
+            "status": "released",
+            "userAreaPlaylistStatus": {
+                "areaPlaylistId": 9,
+                "status": "unreleased"
+            }
+        }
+    },
+    {
+        "areaId": 20,
+        "actionSets": [],
+        "areaItems": [],
+        "userAreaStatus": {
+            "areaId": 20,
+            "status": "released",
+            "userAreaPlaylistStatus": {
+                "areaPlaylistId": 10,
+                "status": "unreleased"
+            }
+        }
+    },
+    {
+        "areaId": 21,
+        "actionSets": [],
+        "areaItems": [],
+        "userAreaStatus": {
+            "areaId": 21,
+            "status": "released",
+            "userAreaPlaylistStatus": {
+                "areaPlaylistId": 11,
+                "status": "unreleased"
+            }
+        }
+    },
+    {
+        "areaId": 22,
+        "actionSets": [],
+        "areaItems": [],
+        "userAreaStatus": {
+            "areaId": 22,
+            "status": "released",
+            "userAreaPlaylistStatus": {
+                "areaPlaylistId": 12,
+                "status": "unreleased"
+            }
+        }
+    },
+    {
+        "areaId": 23,
+        "actionSets": [],
+        "areaItems": [],
+        "userAreaStatus": {
+            "areaId": 23,
+            "status": "released",
+            "userAreaPlaylistStatus": {
+                "areaPlaylistId": 13,
+                "status": "released"
+            }
+        }
+    },
+    {
+        "areaId": 24,
+        "actionSets": [],
+        "areaItems": [],
+        "userAreaStatus": {
+            "areaId": 24,
+            "status": "released",
+            "userAreaPlaylistStatus": {
+                "areaPlaylistId": 14,
+                "status": "released"
+            }
+        }
+    },
+    {
+        "areaId": 25,
+        "actionSets": [],
+        "areaItems": [],
+        "userAreaStatus": {
+            "areaId": 25,
+            "status": "unreleased",
+            "userAreaPlaylistStatus": {
+                "areaPlaylistId": 15,
+                "status": "released"
+            }
+        }
+    },
+    {
+        "areaId": 26,
+        "actionSets": [],
+        "areaItems": [],
+        "userAreaStatus": {
+            "areaId": 26,
+            "status": "released",
+            "userAreaPlaylistStatus": {
+                "areaPlaylistId": 16,
+                "status": "released"
+            }
+        }
+    }
+]
