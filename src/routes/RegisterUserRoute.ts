@@ -163,7 +163,7 @@ export default async function RegisterUserRoute(req: Request, res: Response) {
                     ? 'available'
                     : 'forbidden',
                 userMusicResults: [], // no idea on that rn
-            })), // TODO implement difficulties
+            })),
             userMusicVocals: [], // TODO implement vocals
             userMusicAchievements: [], // TODO implement achievements
             createdAt: Math.floor(music.createdAt.getTime() / 1000),
