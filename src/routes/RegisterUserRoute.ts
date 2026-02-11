@@ -195,6 +195,9 @@ export default async function RegisterUserRoute(req: Request, res: Response) {
         });
     }
 
+    // there is a lot of work to be done.
+    // see /registered.json for example register response body.
+
     res.send(
         encrypt({
             userRegistration,
@@ -223,7 +226,61 @@ export default async function RegisterUserRoute(req: Request, res: Response) {
                 userAreas: user.areas, // TODO proper areas handling
                 userCards,
                 userDecks: userDecks.map(convertDeckToSekaiDeck),
-                userMusics
+                userMusics,
+                userMusicResults: [],
+                userMusicAchievements: [],
+                userShops: [], // TODO implement thats important
+                userUnitEpisodeStatuses: [],
+                userSpecialEpisodeStatuses: [],
+                userEventEpisodeStatuses: [],
+                userArchiveEventEpisodeStatuses: [],
+                userCharacterProfileEpisodeStatuses: [],
+                userEventArchiveCompleteReadRewards: [],
+                userUnits: [],
+                userPresents: [], // TODO
+                userCostume3dStatuses: [],
+                userCostume3dShopItems: [],
+                userCharacterCostume3ds: [],
+                userReleaseConditions: [],
+                unreadUserTopics: [],
+                userHomeBanners: [],
+                userStamps: [], // TODO implement default stamps
+                userMaterialExchanges: [],
+                userGachaCeilExchanges: [],
+                userCharacters: [], // TODO IMPORTANT!
+                userCharacterMissionV2s: [],
+                userCharacterMissionV2Statuses: [],
+                userBeginnerMissionBehavior: {
+                    userBeginnerMissionBehaviorType: 'beginner_mission_v2',
+                },
+                userMissionStatuses: [],
+                userEventMissions: [],
+                userProfile: {
+                    userId: user.userId,
+                    profileImageType: 'leader', // idk other values yet
+                },
+                userHonorMissions: [], // todo!
+                userVirtualShops: [], // TODO
+                userArchiveVirtualLiveReleaseStatuses: [],
+                userAvatar: {
+                    avatarSkinColorId: 1, // todo
+                },
+                userAvatarCostumes: [{ avatarCostumeId: 1 }],
+                userAvatarMotions: [],
+                userAvatarMotionFavorites: [],
+                userAvatarSkinColors: [{ avatarSkinColorId: 1 }], // TODO implement persistence, 1-14
+                userRankMatchResult: {
+                    liveId: '',
+                    liveStatus: 'none',
+                }, // probably ranked shows
+                userLiveCharacterArchiveVoice: {
+                    characterArchiveVoiceGroupIds: [], // THERE ARE A LOT OF NUMBERS AND I HAVE NO IDEA WHAT THEY ARE FOR
+                },
+                userViewableAppeal: { appealIds: [1] },
+                userBillingRefunds: [],
+                userUnprocessedOrders: [],
+                userRecommendgls: [],
+                userInformations: config.informations
             }
         })
     );
