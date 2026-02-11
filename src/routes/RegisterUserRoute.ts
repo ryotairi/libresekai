@@ -159,6 +159,17 @@ export default async function RegisterUserRoute(req: Request, res: Response) {
     ];
     const userMusics: any[] = [];
 
+    for (const musicId of config.initialMusics) {
+        await prisma.userMusic.create({
+            data: {
+                musicId: musicId,
+                userId: user.userId,
+                uniqueMusicId: randomUUID(),
+                availableDifficulties: ['easy', 'normal', 'hard', 'expert'], // TODO add extra difficulty if available
+            }
+        });
+    }
+
     const musics = await prisma.userMusic.findMany({
         where: {
             userId: user.userId

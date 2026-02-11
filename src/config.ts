@@ -39,6 +39,7 @@ type Config = {
     initialPlayerName: string;
 
     initialFreeCards: number[];
+    initialMusics: number[];
 };
 
 const configFile = fs.readFileSync('./config.yml', 'utf-8');
