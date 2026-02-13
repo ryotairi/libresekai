@@ -5,6 +5,7 @@ import RegisterUserRoute from './routes/RegisterUserRoute';
 import { decrypt } from './utils/crypt';
 import UserAuthRoute from './routes/UserAuthRoute';
 import GETApiInformations from './routes/GetInformationRoute';
+import AuthenticationMiddleware from './middlewares/authentication';
 
 const api = express();
 
@@ -15,6 +16,8 @@ api.use((req, res, next) => {
         req.body = decryptedMsgPack;
     }
 });
+
+api.use(AuthenticationMiddleware);
 
 api.get('/api/system', GETApiSystem);
 api.get('/api/informations', GETApiInformations);

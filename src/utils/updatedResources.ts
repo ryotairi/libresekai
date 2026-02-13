@@ -102,6 +102,7 @@ export async function generateUpdatedResources(userId: number | bigint) {
         now: Date.now(),
         refreshableTypes: [],
         userRegistration,
+        userLiveId: user.userLiveId,
         userGamedata: {
             userId: user.userId,
             name: user.name,

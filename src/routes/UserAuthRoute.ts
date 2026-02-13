@@ -32,5 +32,22 @@ export default async function UserAuthRoute(req: Request, res: Response) {
             })
         );
     }
+    // We will return credential as session token for now
     
+    res.send(
+        encrypt({
+            sessionToken: user.credential,
+            appVersion: latestVersion.appVersion,
+            multiPlayVersion: latestVersion.multiPlayVersion,
+            assetVersion: latestVersion.assetVersion,
+            removeAssetVersion: '1.3.1.0',
+            assetHash: '099130e0-88d0-4e29-8e4c-fd9192a06bae', // reverse engineer this logic later.
+            appVersionStatus: latestVersion.appVersionStatus,
+            isStreamingVirtualLiveForceOpenUser: false, // idk what is this
+            deviceId: '00000000-0000-0000-0000-000000000000', // generate this later
+            updatedResources: {}, // todo
+            suiteMasterSplitPath: [],
+            obtainedBondsRewardIds: [], // todo
+        })
+    );
 }
