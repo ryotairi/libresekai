@@ -1,0 +1,1249 @@
+{
+  "countries": [
+    {
+      "id": "at",
+      "age": 14,
+      "type": "consent"
+    },
+    {
+      "id": "be",
+      "age": 13,
+      "type": "consent"
+    },
+    {
+      "id": "bg",
+      "age": 14,
+      "type": "consent"
+    },
+    {
+      "id": "hr",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "cy",
+      "age": 14,
+      "type": "consent"
+    },
+    {
+      "id": "cz",
+      "age": 15,
+      "type": "consent"
+    },
+    {
+      "id": "dk",
+      "age": 13,
+      "type": "consent"
+    },
+    {
+      "id": "ee",
+      "age": 13,
+      "type": "consent"
+    },
+    {
+      "id": "fi",
+      "age": 13,
+      "type": "consent"
+    },
+    {
+      "id": "fr",
+      "age": 15,
+      "type": "consent"
+    },
+    {
+      "id": "de",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "gr",
+      "age": 15,
+      "type": "consent"
+    },
+    {
+      "id": "hu",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "ie",
+      "age": 13,
+      "type": "consent"
+    },
+    {
+      "id": "it",
+      "age": 14,
+      "type": "consent"
+    },
+    {
+      "id": "lv",
+      "age": 13,
+      "type": "consent"
+    },
+    {
+      "id": "lt",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "lu",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "mt",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "nl",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "pl",
+      "age": 13,
+      "type": "consent"
+    },
+    {
+      "id": "pt",
+      "age": 13,
+      "type": "consent"
+    },
+    {
+      "id": "ro",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "sk",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "si",
+      "age": 15,
+      "type": "consent"
+    },
+    {
+      "id": "es",
+      "age": 13,
+      "type": "consent"
+    },
+    {
+      "id": "se",
+      "age": 13,
+      "type": "consent"
+    },
+    {
+      "id": "gb",
+      "age": 13,
+      "type": "consent"
+    },
+    {
+      "id": "no",
+      "age": 13,
+      "type": "consent"
+    },
+    {
+      "id": "is",
+      "age": 13,
+      "type": "consent"
+    },
+    {
+      "id": "li",
+      "age": 13,
+      "type": "consent"
+    },
+    {
+      "id": "hk",
+      "age": 18,
+      "type": "consent"
+    },
+    {
+      "id": "mo",
+      "age": 18,
+      "type": "consent"
+    },
+    {
+      "id": "sg",
+      "age": 18,
+      "type": "consent"
+    },
+    {
+      "id": "tw",
+      "age": 20,
+      "type": "consent"
+    },
+    {
+      "id": "us",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "ad",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "ae",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "af",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "ag",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "ai",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "al",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "am",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "ao",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "aq",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "ar",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "as",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "au",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "aw",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "ax",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "az",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "ba",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "bb",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "bd",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "bf",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "bh",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "bi",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "bj",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "bl",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "bm",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "bn",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "bo",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "bq",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "br",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "bs",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "bt",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "bv",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "bw",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "by",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "bz",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "ca",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "cc",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "cd",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "cf",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "cg",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "ch",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "ci",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "ck",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "cl",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "cm",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "cn",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "co",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "cr",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "cu",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "cv",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "cw",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "cx",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "dj",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "dm",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "do",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "dz",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "ec",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "eg",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "eh",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "er",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "et",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "fj",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "fk",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "fm",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "fo",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "ga",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "gd",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "ge",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "gf",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "gg",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "gh",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "gi",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "gl",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "gm",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "gn",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "gp",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "gq",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "gs",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "gt",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "gu",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "gw",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "gy",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "hm",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "hn",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "ht",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "id",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "il",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "im",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "in",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "io",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "iq",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "ir",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "is",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "je",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "jm",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "jo",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "jp",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "ke",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "kg",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "kh",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "ki",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "km",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "kn",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "kp",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "kr",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "kw",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "ky",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "kz",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "la",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "lb",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "lc",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "lk",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "lr",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "ly",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "ma",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "mc",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "md",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "me",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "mf",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "mg",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "mh",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "mk",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "ml",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "mm",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "mn",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "mp",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "mq",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "mr",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "ms",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "mu",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "mv",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "mw",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "mx",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "my",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "mz",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "na",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "nc",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "ne",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "nf",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "ng",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "ni",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "np",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "nr",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "nu",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "nz",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "om",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "pa",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "pe",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "pf",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "pg",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "ph",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "pk",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "pm",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "pn",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "pr",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "ps",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "pw",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "py",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "qa",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "re",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "rs",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "ru",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "rw",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "sa",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "sb",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "sc",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "sd",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "sh",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "sj",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "sl",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "sm",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "sn",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "so",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "sr",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "ss",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "st",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "sv",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "sx",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "sy",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "sz",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "tc",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "td",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "tf",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "tg",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "th",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "tj",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "tk",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "tl",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "tm",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "tn",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "to",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "tr",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "tt",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "tv",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "tz",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "ua",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "ug",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "um",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "uy",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "uz",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "va",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "vc",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "ve",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "vg",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "vi",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "vn",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "vu",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "wf",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "ws",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "ye",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "yt",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "za",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "zm",
+      "age": 16,
+      "type": "consent"
+    },
+    {
+      "id": "zw",
+      "age": 16,
+      "type": "consent"
+    }
+  ]
+}

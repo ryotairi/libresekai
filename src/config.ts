@@ -28,6 +28,7 @@ type Config = {
     webPort: number;
     versionPort: number;
     versions: GameAppVersion[];
+    latestVersion: number;
     apiDomain: string;
     webDomain: string;
     maintenanceStatus: 'maintenance_out';

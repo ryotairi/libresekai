@@ -13,6 +13,16 @@ datasource db {
   provider = "postgresql"
 }
 
+enum Unit {
+  idol // More more jump!
+  light_sound // Leo/need
+  none // What? idk
+  piapro // VIRTUAL SINGER
+  school_refusal // Nightcord at 25:00
+  street // Vivid Bad SQUAD
+  theme_park // Wonderlands x Showtime
+}
+
 model User {
   userId     BigInt @unique
   credential String
@@ -56,10 +66,27 @@ model UserGameData {
   coin        Int @default(0)
   virtualCoin Int @default(0)
 
-  decks UserDeck[]
-  users User[]
+  decks      UserDeck[]
+  characters UserCharacter[]
+  units      UserUnit[]
+  musics     UserMusic[]
+  users      User[]
 
   @@map("users_game_data")
+}
+
+model UserUnit {
+  uniqueUnitId String @id
+
+  userId             BigInt
+  unit               Unit
+  rank               Int           @default(1)
+  exp                Int           @default(0)
+  totalExp           Int           @default(0)
+  userGameData       UserGameData? @relation(fields: [userGameDataUserId], references: [userId])
+  userGameDataUserId BigInt?
+
+  @@map("user_units")
 }
 
 /**
@@ -152,10 +179,21 @@ model UserDeck {
   deckId             Int
   name               String
   members            Int[] // member1, member2, member3, member4, member5
-  userGameData       UserGameData? @relation(fields: [userGameDataUserId], references: [userId])
-  userGameDataUserId BigInt?
+  userGameData       UserGameData? @relation(fields: [userId], references: [userId])
 
   @@map("user_decks")
+}
+
+model UserCharacter {
+  uniqueCharacterId  String        @id
+  userId             BigInt
+  characterId        Int
+  characterRank      Int           @default(1)
+  exp                Int           @default(0)
+  totalExp           Int           @default(0)
+  userGameData       UserGameData? @relation(fields: [userId], references: [userId])
+
+  @@map("user_characters")
 }
 
 model UserMusic {
@@ -167,6 +205,7 @@ model UserMusic {
   vocals                Int[]
   availableDifficulties String[] @default(["easy", "normal", "hard", "expert"]) // manually add append. master upon unlock.
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt          DateTime      @default(now())
+  updatedAt          DateTime      @updatedAt
+  userGameData       UserGameData? @relation(fields: [userId], references: [userId])
 }

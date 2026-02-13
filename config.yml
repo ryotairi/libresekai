@@ -16,6 +16,8 @@ versions:
     assetVersion: '5.0.51.0'
     appVersionStatus: 'available'
 
+latestVersion: 0
+
 legal:
   privacyPolicy: 'https://rustyraven.pw'
   termsOfUse: 'https://rustyraven.pw'
