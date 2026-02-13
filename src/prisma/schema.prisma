@@ -37,14 +37,44 @@ model User {
   gameData       UserGameData?    @relation(fields: [userGameDataUserId], references: [userId])
   boost          UserBoostStatus? @relation(fields: [userBoostStatusUserId], references: [userId])
   tutorialStatus String           @default("start")
+  userLiveId     String?
 
   areas Json
 
   name                  String
   userGameDataUserId    BigInt?
   userBoostStatusUserId BigInt?
+  userLive              UserLive?
 
   @@map("users")
+}
+
+model UserLive {
+  userId BigInt @unique
+
+  liveId String
+
+  musicId Int
+  musicDifficultyId Int
+  musicVocalId Int
+  deckId Int
+  boostCount Int
+  isAutoPlay Boolean
+  
+  // has results only after finishing.
+  perfectCount Int?
+  greatCount Int?
+  goodCount Int?
+  badCount Int?
+  missCount Int?
+  score Int?
+  life Int?
+  maxCombo Int?
+  tapCount Int?
+
+  user User? @relation(fields: [userId], references: [userId])
+
+  @@map("users_live")
 }
 
 model UserBoostStatus {
@@ -175,23 +205,23 @@ model Card {
 model UserDeck {
   uniqueDeckId String @id
 
-  userId             BigInt
-  deckId             Int
-  name               String
-  members            Int[] // member1, member2, member3, member4, member5
-  userGameData       UserGameData? @relation(fields: [userId], references: [userId])
+  userId       BigInt
+  deckId       Int
+  name         String
+  members      Int[] // member1, member2, member3, member4, member5
+  userGameData UserGameData? @relation(fields: [userId], references: [userId])
 
   @@map("user_decks")
 }
 
 model UserCharacter {
-  uniqueCharacterId  String        @id
-  userId             BigInt
-  characterId        Int
-  characterRank      Int           @default(1)
-  exp                Int           @default(0)
-  totalExp           Int           @default(0)
-  userGameData       UserGameData? @relation(fields: [userId], references: [userId])
+  uniqueCharacterId String        @id
+  userId            BigInt
+  characterId       Int
+  characterRank     Int           @default(1)
+  exp               Int           @default(0)
+  totalExp          Int           @default(0)
+  userGameData      UserGameData? @relation(fields: [userId], references: [userId])
 
   @@map("user_characters")
 }
@@ -205,7 +235,7 @@ model UserMusic {
   vocals                Int[]
   availableDifficulties String[] @default(["easy", "normal", "hard", "expert"]) // manually add append. master upon unlock.
 
-  createdAt          DateTime      @default(now())
-  updatedAt          DateTime      @updatedAt
-  userGameData       UserGameData? @relation(fields: [userId], references: [userId])
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  userGameData UserGameData? @relation(fields: [userId], references: [userId])
 }
