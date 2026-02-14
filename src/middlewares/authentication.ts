@@ -22,20 +22,8 @@ export default async function AuthenticationMiddleware(req: Request, res: Respon
             return next();
         }
     }
-    
-    const authHeader = req.headers['authorization'];
-    if (!authHeader) {
-        // the game does not show messages anyway, but original SEGA's servers return errors like that
-        return res.status(401).json(
-            encrypt({
-                httpStatus: 401,
-                errorCode: '',
-                errorMessage: '',
-            })
-        );
-    }
 
-    const credential = authHeader.split(' ')[1];
+    const credential = req.headers['x-session-token'] as string;
     if (!credential) {
         return res.status(401).json(
             encrypt({
