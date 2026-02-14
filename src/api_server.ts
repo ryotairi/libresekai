@@ -10,15 +10,16 @@ import SetTutorialStatusRoute from './routes/SetTutorialStatusRoute';
 
 const api = express();
 
+api.use(AuthenticationMiddleware);
+
 api.use((req, res, next) => {
     if (req.headers['content-type'] === 'apilication/octet-stream') {
         const buffer = req.body as Buffer;
         const decryptedMsgPack = decrypt(buffer);
         req.body = decryptedMsgPack;
     }
+    next();
 });
-
-api.use(AuthenticationMiddleware);
 
 api.get('/api/system', GETApiSystem);
 api.get('/api/informations', GETApiInformations);
