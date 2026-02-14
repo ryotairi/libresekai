@@ -26,9 +26,9 @@ export default async function RegisterUserRoute(req: Request, res: Response) {
         typeof body.deviceModel !== 'string' ||
         typeof body.operatingSystem !== 'string'
     ) {
-        return res.status(400).send(
+        return res.status(422).send(
             encrypt({
-                httpStatus: 400,
+                httpStatus: 422,
                 errorCode: '',
                 errorMessage: '',
             })

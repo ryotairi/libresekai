@@ -6,6 +6,7 @@ import { decrypt } from './utils/crypt';
 import UserAuthRoute from './routes/UserAuthRoute';
 import GETApiInformations from './routes/GetInformationRoute';
 import AuthenticationMiddleware from './middlewares/authentication';
+import SetTutorialStatusRoute from './routes/SetTutorialStatusRoute';
 
 const api = express();
 
@@ -23,5 +24,6 @@ api.get('/api/system', GETApiSystem);
 api.get('/api/informations', GETApiInformations);
 api.post('/api/user', RegisterUserRoute);
 api.post('/api/user/:userId/auth', UserAuthRoute);
+api.patch('/api/user/:userId/tutorial', SetTutorialStatusRoute);
 
 api.listen(config.apiPort);
