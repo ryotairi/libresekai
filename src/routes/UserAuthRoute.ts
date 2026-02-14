@@ -7,9 +7,9 @@ export default async function UserAuthRoute(req: Request, res: Response) {
     const { body } = req;
     // required STRING field - credential
     if (!body.credential || typeof body.credential !== 'string') {
-        return res.status(400).send(
+        return res.status(422).send(
             encrypt({
-                httpStatus: 400,
+                httpStatus: 422,
                 errorCode: '',
                 errorMessage: ''
             })
@@ -46,7 +46,9 @@ export default async function UserAuthRoute(req: Request, res: Response) {
             isStreamingVirtualLiveForceOpenUser: false, // idk what is this
             deviceId: '00000000-0000-0000-0000-000000000000', // generate this later
             updatedResources: {}, // todo
-            suiteMasterSplitPath: [],
+            suiteMasterSplitPath: [
+                ''
+            ],
             obtainedBondsRewardIds: [], // todo
         })
     );
