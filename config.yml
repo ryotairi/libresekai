@@ -1,6 +1,8 @@
 apiPort: 4455
 webPort: 4456
 versionPort: 4457
+# i will use same port for all asset domains
+assetsPort: 4458
 maintenanceStatus: 'maintenance_out'
 
 #          'n-production-game-api.sekai-en.com'
@@ -9,12 +11,26 @@ apiDomain: 'libre-sekai-game-api.rustyraven.pw'
 #          'n-production-web.sekai-en.com'
 webDomain: 'sekai-web-files.rustyraven.pw' # must be 29 characters long
 
+domains:
+  #               'assetbundle-api.sekai-en.com'
+  assetbundleApi: 'ls-assetbundle.rustyraven.pw'
+  #               'n-{0}-{1}-assetbundle.sekai-en.com'
+  assetbundleUrl: 'nn-{0}-{1}-ls-assets.rustyraven.pw'
+  #                   'n-{0}-{1}-assetbundle-info.sekai-en.com'
+  assetbundleInfoUrl: 'n-{0}-{1}-assetbundl-info.rustyraven.pw'
+
 versions:
   - systemProfile: 'production'
     appVersion: '5.0.5'
     multiPlayVersion: 'len'
     assetVersion: '5.0.51.0'
     appVersionStatus: 'available'
+  
+versionData:
+  '5.0.5/218d9a70-f3b7-4d1b-ba83-c9f85af283e6':
+    profile: production
+    assetbundleHostHash: 846c90c1
+    domain: libre-sekai-game-api.rustyraven.pw
 
 latestVersion: 0
 
@@ -29,11 +45,22 @@ informations:
     informationTag: information 
     browseType: 'external'
     platform: 'all'
-    title: 'Welcome to libresekai powered server!'
+    title: 'You are connected to libresekai'
     path: 'https://github.com/ryotairi/libresekai'
+    startAt: 0
+  - id: 2
+    seq: 2
+    informationType: normal
+    informationTag: information 
+    browseType: 'external'
+    platform: 'all'
+    title: 'Report issues here'
+    path: 'https://github.com/ryotairi/libresekai/issues'
     startAt: 0
 
 initialPlayerName: 'SEKAI Player'
+
+deleteLiveDataAfterFinishing: false
 
 initialFreeCards: [81, 89, 93, 97, 101, 105] # No idea on what these are for, but they were in registration response body. I've picked Leo/need btw
 initialMusics:

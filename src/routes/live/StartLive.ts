@@ -38,6 +38,16 @@ export default async function StartLive(req: Request, res: Response) {
         );
     }
 
+    if (req.params.userId !== req.userId?.toString()) {
+        return res.status(422).send(
+            encrypt({
+                httpStatus: 422,
+                errorCode: '',
+                errorMessage: ''
+            })
+        );
+    }
+
     const user = await prisma.user.findFirst({
         where: {
             userId: BigInt(userId!)

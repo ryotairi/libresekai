@@ -23,12 +23,29 @@ type ApiInformation = {
     endAt?: number;
 };
 
+type VersionData = {
+    profile: 'production';
+    assetbundleHostHash: string;
+    domain: string;
+};
+
+type VersionDataDict = {
+    [key: string]: VersionData
+};
+
 type Config = {
     apiPort: number;
     webPort: number;
     versionPort: number;
+    assetsPort: number;
+    domains: {
+        assetbundleApi: string;
+        assetbundleUrl: string;
+        assetbundleInfoUrl: string;
+    };
     versions: GameAppVersion[];
     latestVersion: number;
+    versionData: VersionDataDict;
     apiDomain: string;
     webDomain: string;
     maintenanceStatus: 'maintenance_out';
@@ -38,6 +55,7 @@ type Config = {
     };
     informations: ApiInformation[];
     initialPlayerName: string;
+    deleteLiveDataAfterFinishing: boolean;
 
     initialFreeCards: number[];
     initialMusics: number[];

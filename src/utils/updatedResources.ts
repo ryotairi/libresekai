@@ -113,6 +113,11 @@ export async function generateUpdatedResources(userId: number | bigint) {
             coin: gameData.coin,
             virtualCoin: gameData.virtualCoin,
         },
+        userChargedCurrency: {
+            paid: 0,
+            free: gameData.crystals,
+            paidUnitPrices: [],
+        },
         userBoost: {
             current: boostData.current,
             recoveryAt: Math.floor(boostData.recoveryAt.getTime() / 1000),

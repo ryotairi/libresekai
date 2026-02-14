@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { encrypt } from "../utils/crypt";
 import { config } from "../config";
 import { prisma } from "../services/prisma";
+import { generateUpdatedResources } from "../utils/updatedResources";
 
 export default async function UserAuthRoute(req: Request, res: Response) {
     const { body } = req;
@@ -33,7 +34,7 @@ export default async function UserAuthRoute(req: Request, res: Response) {
         );
     }
     // We will return credential as session token for now
-    
+
     res.send(
         encrypt({
             sessionToken: user.credential,
@@ -45,7 +46,9 @@ export default async function UserAuthRoute(req: Request, res: Response) {
             appVersionStatus: latestVersion.appVersionStatus,
             isStreamingVirtualLiveForceOpenUser: false, // idk what is this
             deviceId: '00000000-0000-0000-0000-000000000000', // generate this later
-            updatedResources: {}, // todo
+            updatedResources: req.query.refreshUpdatedResources === 'false'
+                ? {}
+                : generateUpdatedResources(user.userId),
             suiteMasterSplitPath: [
                 ''
             ],

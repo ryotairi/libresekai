@@ -23,6 +23,24 @@ enum Unit {
   theme_park // Wonderlands x Showtime
 }
 
+enum MusicDifficulty {
+  easy
+  normal
+  hard
+  expert
+  master
+  append
+}
+
+enum PlayTime {
+  solo // only solo bc coop isnt implemented yet
+}
+
+enum PlayResult {
+  not_clear
+  clear
+}
+
 model User {
   userId     BigInt @unique
   credential String
@@ -54,23 +72,23 @@ model UserLive {
 
   liveId String
 
-  musicId Int
+  musicId           Int
   musicDifficultyId Int
-  musicVocalId Int
-  deckId Int
-  boostCount Int
-  isAutoPlay Boolean
-  
+  musicVocalId      Int
+  deckId            Int
+  boostCount        Int
+  isAutoPlay        Boolean
+
   // has results only after finishing.
   perfectCount Int?
-  greatCount Int?
-  goodCount Int?
-  badCount Int?
-  missCount Int?
-  score Int?
-  life Int?
-  maxCombo Int?
-  tapCount Int?
+  greatCount   Int?
+  goodCount    Int?
+  badCount     Int?
+  missCount    Int?
+  score        Int?
+  life         Int?
+  maxCombo     Int?
+  tapCount     Int?
 
   user User? @relation(fields: [userId], references: [userId])
 
@@ -86,6 +104,42 @@ model UserBoostStatus {
   @@map("users_boost")
 }
 
+/**
+ * {
+ * "userId": 714846936821514200,
+ * "musicId": 50,
+ * "musicDifficulty": "expert",
+ * "playType": "solo",
+ * "playResult": "not_clear",
+ * "highScore": 74522,
+ * "fullComboFlg": false,
+ * "fullPerfectFlg": false,
+ * "mvpCount": 0,
+ * "superStarCount": 0,
+ * "createdAt": 1770828821377,
+ * "updatedAt": 1770828821377
+ * }
+ */
+model UserMusicResult {
+  uniqueResultId String @id
+
+  userId          BigInt
+  musicId         Int
+  musicDifficulty MusicDifficulty
+  playType        PlayTime        @default(solo)
+  playResult      PlayResult
+  highScore       Int
+  fullComboFlg    Boolean
+  fullPerfectFlg  Boolean
+  mvpCount        Int
+  superStarCount  Int
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("user_music_results")
+}
+
 model UserGameData {
   userId BigInt @unique
 
@@ -95,6 +149,7 @@ model UserGameData {
   totalExp    Int @default(0)
   coin        Int @default(0)
   virtualCoin Int @default(0)
+  crystals    Int @default(10000)
 
   decks      UserDeck[]
   characters UserCharacter[]
