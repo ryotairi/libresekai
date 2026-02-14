@@ -11,6 +11,9 @@ apiDomain: 'libre-sekai-game-api.rustyraven.pw'
 #          'n-production-web.sekai-en.com'
 webDomain: 'sekai-web-files.rustyraven.pw' # must be 29 characters long
 
+#              'game-version.sekai-en.com'
+versionDomain: 'sekai-gamev.rustyraven.pw'
+
 domains:
   #               'assetbundle-api.sekai-en.com'
   assetbundleApi: 'ls-assetbundle.rustyraven.pw'
