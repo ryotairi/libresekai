@@ -46,7 +46,7 @@ export default async function UserAuthRoute(req: Request, res: Response) {
             appVersionStatus: latestVersion.appVersionStatus,
             isStreamingVirtualLiveForceOpenUser: false, // idk what is this
             deviceId: '00000000-0000-0000-0000-000000000000', // generate this later
-            updatedResources: req.query.refreshUpdatedResources === 'false'
+            updatedResources: req.query.refreshUpdatedResources === 'False'
                 ? {}
                 : generateUpdatedResources(user.userId),
             suiteMasterSplitPath: [
