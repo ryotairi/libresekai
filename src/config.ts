@@ -49,6 +49,8 @@ type Config = {
     apiDomain: string;
     webDomain: string;
     maintenanceStatus: 'maintenance_out';
+    suiteMasterSplitPath: string[];
+    assetHash: string;
     legal: {
         privacyPolicy: string;
         termsOfUse: string;
@@ -65,5 +67,5 @@ const configFile = fs.readFileSync('./config.yml', 'utf-8');
 const config: Config = yaml.parse(configFile);
 
 export {
-    config
+    config,
 };

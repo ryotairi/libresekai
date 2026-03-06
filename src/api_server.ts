@@ -9,6 +9,9 @@ import AuthenticationMiddleware from './middlewares/authentication';
 import SetTutorialStatusRoute from './routes/SetTutorialStatusRoute';
 import StartLive from './routes/live/StartLive';
 import FinishLive from './routes/live/FinishLive';
+import PatchUserRoute from './routes/user/PatchUserRoute';
+import UserAgeInfoRoute from './routes/legal/UserAgeInfoRoute';
+import SuiteMasterFileRoute from './routes/SuiteMasterFileRoute';
 
 const api = express();
 
@@ -27,8 +30,13 @@ api.get('/api/system', GETApiSystem);
 api.get('/api/informations', GETApiInformations);
 api.post('/api/user', RegisterUserRoute);
 
+api.get('/api/suitemasterfile/:version/:fileName', SuiteMasterFileRoute);
+
+api.get('/api/user/na/:userId/legal/ageinfo', UserAgeInfoRoute);
+
 api.post('/api/user/:userId/auth', UserAuthRoute);
 api.patch('/api/user/:userId/tutorial', SetTutorialStatusRoute);
+api.patch('/api/user/:userId', PatchUserRoute);
 
 api.post('/api/user/:userId/live', StartLive);
 api.post('/api/user/:userId/live/:liveId', FinishLive);

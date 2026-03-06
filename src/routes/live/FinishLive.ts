@@ -4,26 +4,28 @@ import { prisma } from "../../services/prisma";
 import logger from "../../services/logger";
 import { config } from "../../config";
 import { generateUpdatedResources } from "../../utils/updatedResources";
+import { z } from "zod";
+
+const FinishLiveSchema = z.object({
+    score: z.number(),
+    perfectCount: z.number(),
+    greatCount: z.number(),
+    goodCount: z.number(),
+    badCount: z.number(),
+    missCount: z.number(),
+    maxCombo: z.number(),
+    life: z.number(),
+    tapCount: z.number(),
+    musicCategoryName: z.string(),
+    isMirrored: z.boolean(),
+    ingameCutinCharacterArchiveVoiceGroupIds: z.array(z.any()),
+});
 
 export default async function FinishLive(req: Request, res: Response) {
-    const { body, userId } = req;
+    const { userId } = req;
 
-    if (
-        typeof body.score !== 'number'
-        || typeof body.perfectCount !== 'number'
-        || typeof body.greatCount !== 'number'
-        || typeof body.goodCount !== 'number'
-        || typeof body.badCount !== 'number'
-        || typeof body.missCount !== 'number'
-        || typeof body.score !== 'number'
-        || typeof body.maxCombo !== 'number'
-        || typeof body.life !== 'number'
-        || typeof body.tapCount !== 'number'
-        || typeof body.musicCategoryName !== 'string' // havent encountered anything other than image yet
-        || typeof body.isMirrored !== 'boolean'
-        || typeof body.ingameCutinCharacterArchiveVoiceGroupIds !== 'object'
-        || !Array.isArray(body.ingameCutinCharacterArchiveVoiceGroupIds)
-    ) {
+    const parsed = FinishLiveSchema.safeParse(req.body);
+    if (!parsed.success) {
         return res.status(422).send(
             encrypt({
                 httpStatus: 422,
@@ -33,11 +35,13 @@ export default async function FinishLive(req: Request, res: Response) {
         );
     }
 
+    const body = parsed.data;
+
     if (req.params.userId !== req.userId?.toString()) {
-        return res.status(422).send(
+        return res.status(403).send(
             encrypt({
-                httpStatus: 422,
-                errorCode: '',
+                httpStatus: 403,
+                errorCode: 'session_error',
                 errorMessage: ''
             })
         );

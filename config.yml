@@ -27,10 +27,30 @@ versions:
     appVersion: '5.0.5'
     multiPlayVersion: 'len'
     assetVersion: '5.0.51.0'
+    appVersionStatus: 'not_available'
+  - systemProfile: 'production'
+    appVersion: '5.1.0'
+    multiPlayVersion: luka
+    assetVersion: '5.1.0.10'
     appVersionStatus: 'available'
+
+suiteMasterSplitPath:
+- 'suitemasterfile/5.1.0.10/00_dba319e36bc25105fca7513625bd107a8d42e25ddf26b4826c5aa154d158e239'
+- 'suitemasterfile/5.1.0.10/01_dba319e36bc25105fca7513625bd107a8d42e25ddf26b4826c5aa154d158e239'
+- 'suitemasterfile/5.1.0.10/02_dba319e36bc25105fca7513625bd107a8d42e25ddf26b4826c5aa154d158e239'
+- 'suitemasterfile/5.1.0.10/03_dba319e36bc25105fca7513625bd107a8d42e25ddf26b4826c5aa154d158e239'
+- 'suitemasterfile/5.1.0.10/04_dba319e36bc25105fca7513625bd107a8d42e25ddf26b4826c5aa154d158e239'
+- 'suitemasterfile/5.1.0.10/05_dba319e36bc25105fca7513625bd107a8d42e25ddf26b4826c5aa154d158e239'
+- 'suitemasterfile/5.1.0.10/06_dba319e36bc25105fca7513625bd107a8d42e25ddf26b4826c5aa154d158e239'
+
+assetHash: af1e317c-66ce-4999-96cf-fd8fe36e5cf3
   
 versionData:
   '5.0.5/218d9a70-f3b7-4d1b-ba83-c9f85af283e6':
+    profile: production
+    assetbundleHostHash: 846c90c1
+    domain: libre-sekai-game-api.rustyraven.pw
+  '5.1.0/621bca66-741f-4d15-9452-8ebda83ccb48':
     profile: production
     assetbundleHostHash: 846c90c1
     domain: libre-sekai-game-api.rustyraven.pw

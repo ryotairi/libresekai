@@ -2,33 +2,23 @@ import { Request, Response } from "express";
 import { encrypt } from "../../utils/crypt";
 import { prisma } from "../../services/prisma";
 import { generateUpdatedResources } from "../../utils/updatedResources";
+import { z } from "zod";
+
+const StartLiveSchema = z.object({
+    musicId: z.number(),
+    musicDifficultyId: z.number(),
+    musicVocalId: z.number(),
+    deckId: z.number(),
+    boostCount: z.number(),
+    isAuto: z.boolean(),
+    musicCategoryName: z.string(),
+});
 
 export default async function StartLive(req: Request, res: Response) {
-    const {body, userId} = req;
+    const { userId } = req;
 
-    /*
-    example body
-    {
-        "musicId": 50, // obvious
-        "musicDifficultyId": 249, // i have some ideas about that. it is probably linked to updatedResources.
-        "musicVocalId": 46, // same
-        "deckId": 1, // the card group
-        "boostCount": 3, // probably "energy drinks" amount?
-        "isAuto": false,
-        "musicCategoryName": "image" // probably how did you select the song.
-}
-    */
-
-    // validate
-    if (
-        typeof body.musicId !== 'number' ||
-        typeof body.musicDifficultyId !== 'number' ||
-        typeof body.musicVocalId !== 'number' ||
-        typeof body.deckId !== 'number' ||
-        typeof body.boostCount !== 'number' ||
-        typeof body.isAuto !== 'boolean' ||
-        typeof body.musicCategoryName !== 'string'
-    ) {
+    const parsed = StartLiveSchema.safeParse(req.body);
+    if (!parsed.success) {
         return res.status(422).send(
             encrypt({
                 httpStatus: 422,
@@ -38,11 +28,13 @@ export default async function StartLive(req: Request, res: Response) {
         );
     }
 
+    const body = parsed.data;
+
     if (req.params.userId !== req.userId?.toString()) {
-        return res.status(422).send(
+        return res.status(403).send(
             encrypt({
-                httpStatus: 422,
-                errorCode: '',
+                httpStatus: 403,
+                errorCode: 'session_error',
                 errorMessage: ''
             })
         );

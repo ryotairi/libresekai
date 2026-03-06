@@ -5,103 +5,105 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client"
-  output   = "../generated/prisma"
+    provider = "prisma-client"
+    output   = "../generated/prisma"
 }
 
 datasource db {
-  provider = "postgresql"
+    provider = "postgresql"
 }
 
 enum Unit {
-  idol // More more jump!
-  light_sound // Leo/need
-  none // What? idk
-  piapro // VIRTUAL SINGER
-  school_refusal // Nightcord at 25:00
-  street // Vivid Bad SQUAD
-  theme_park // Wonderlands x Showtime
+    idol // More more jump!
+    light_sound // Leo/need
+    none // What? idk
+    piapro // VIRTUAL SINGER
+    school_refusal // Nightcord at 25:00
+    street // Vivid Bad SQUAD
+    theme_park // Wonderlands x Showtime
 }
 
 enum MusicDifficulty {
-  easy
-  normal
-  hard
-  expert
-  master
-  append
+    easy
+    normal
+    hard
+    expert
+    master
+    append
 }
 
 enum PlayTime {
-  solo // only solo bc coop isnt implemented yet
+    solo // only solo bc coop isnt implemented yet
 }
 
 enum PlayResult {
-  not_clear
-  clear
+    not_clear
+    clear
 }
 
 model User {
-  userId     BigInt @unique
-  credential String
+    userId     BigInt @unique
+    credential String
 
-  signature       String
-  platform        String
-  deviceModel     String
-  operatingSystem String
+    signature       String
+    platform        String
+    deviceModel     String
+    operatingSystem String
 
-  registeredAt DateTime @default(now())
+    birthdate DateTime?
 
-  gameData       UserGameData?    @relation(fields: [userGameDataUserId], references: [userId])
-  boost          UserBoostStatus? @relation(fields: [userBoostStatusUserId], references: [userId])
-  tutorialStatus String           @default("start")
-  userLiveId     String?
+    registeredAt DateTime @default(now())
 
-  areas Json
+    gameData       UserGameData?    @relation(fields: [userGameDataUserId], references: [userId])
+    boost          UserBoostStatus? @relation(fields: [userBoostStatusUserId], references: [userId])
+    tutorialStatus String           @default("start")
+    userLiveId     String?
 
-  name                  String
-  userGameDataUserId    BigInt?
-  userBoostStatusUserId BigInt?
-  userLive              UserLive?
+    areas Json
 
-  @@map("users")
+    name                  String
+    userGameDataUserId    BigInt?
+    userBoostStatusUserId BigInt?
+    userLive              UserLive?
+
+    @@map("users")
 }
 
 model UserLive {
-  userId BigInt @unique
+    userId BigInt @unique
 
-  liveId String
+    liveId String
 
-  musicId           Int
-  musicDifficultyId Int
-  musicVocalId      Int
-  deckId            Int
-  boostCount        Int
-  isAutoPlay        Boolean
+    musicId           Int
+    musicDifficultyId Int
+    musicVocalId      Int
+    deckId            Int
+    boostCount        Int
+    isAutoPlay        Boolean
 
-  // has results only after finishing.
-  perfectCount Int?
-  greatCount   Int?
-  goodCount    Int?
-  badCount     Int?
-  missCount    Int?
-  score        Int?
-  life         Int?
-  maxCombo     Int?
-  tapCount     Int?
+    // has results only after finishing.
+    perfectCount Int?
+    greatCount   Int?
+    goodCount    Int?
+    badCount     Int?
+    missCount    Int?
+    score        Int?
+    life         Int?
+    maxCombo     Int?
+    tapCount     Int?
 
-  user User? @relation(fields: [userId], references: [userId])
+    user User? @relation(fields: [userId], references: [userId])
 
-  @@map("users_live")
+    @@map("users_live")
 }
 
 model UserBoostStatus {
-  userId     BigInt   @unique
-  current    Int
-  recoveryAt DateTime
-  users      User[]
+    userId     BigInt   @unique
+    current    Int
+    recoveryAt DateTime
+    users      User[]
 
-  @@map("users_boost")
+    @@map("users_boost")
 }
 
 /**
@@ -121,57 +123,57 @@ model UserBoostStatus {
  * }
  */
 model UserMusicResult {
-  uniqueResultId String @id
+    uniqueResultId String @id
 
-  userId          BigInt
-  musicId         Int
-  musicDifficulty MusicDifficulty
-  playType        PlayTime        @default(solo)
-  playResult      PlayResult
-  highScore       Int
-  fullComboFlg    Boolean
-  fullPerfectFlg  Boolean
-  mvpCount        Int
-  superStarCount  Int
+    userId          BigInt
+    musicId         Int
+    musicDifficulty MusicDifficulty
+    playType        PlayTime        @default(solo)
+    playResult      PlayResult
+    highScore       Int
+    fullComboFlg    Boolean
+    fullPerfectFlg  Boolean
+    mvpCount        Int
+    superStarCount  Int
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 
-  @@map("user_music_results")
+    @@map("user_music_results")
 }
 
 model UserGameData {
-  userId BigInt @unique
+    userId BigInt @unique
 
-  deck        Int @default(1)
-  rank        Int @default(1)
-  exp         Int @default(0)
-  totalExp    Int @default(0)
-  coin        Int @default(0)
-  virtualCoin Int @default(0)
-  crystals    Int @default(10000)
+    deck        Int @default(1)
+    rank        Int @default(1)
+    exp         Int @default(0)
+    totalExp    Int @default(0)
+    coin        Int @default(0)
+    virtualCoin Int @default(0)
+    crystals    Int @default(10000)
 
-  decks      UserDeck[]
-  characters UserCharacter[]
-  units      UserUnit[]
-  musics     UserMusic[]
-  users      User[]
+    decks      UserDeck[]
+    characters UserCharacter[]
+    units      UserUnit[]
+    musics     UserMusic[]
+    users      User[]
 
-  @@map("users_game_data")
+    @@map("users_game_data")
 }
 
 model UserUnit {
-  uniqueUnitId String @id
+    uniqueUnitId String @id
 
-  userId             BigInt
-  unit               Unit
-  rank               Int           @default(1)
-  exp                Int           @default(0)
-  totalExp           Int           @default(0)
-  userGameData       UserGameData? @relation(fields: [userGameDataUserId], references: [userId])
-  userGameDataUserId BigInt?
+    userId             BigInt
+    unit               Unit
+    rank               Int           @default(1)
+    exp                Int           @default(0)
+    totalExp           Int           @default(0)
+    userGameData       UserGameData? @relation(fields: [userGameDataUserId], references: [userId])
+    userGameDataUserId BigInt?
 
-  @@map("user_units")
+    @@map("user_units")
 }
 
 /**
@@ -210,36 +212,36 @@ model UserUnit {
  */
 
 model CardEpisode {
-  id                    String  @id
-  cardEpisodeId         Int
-  scenarioStatus        String // unreleased
-  scenarioStatusReasons Json // []
-  isNotSkipped          Boolean
-  card                  Card?   @relation(fields: [cardId], references: [id])
-  cardId                String?
+    id                    String  @id
+    cardEpisodeId         Int
+    scenarioStatus        String // unreleased
+    scenarioStatusReasons Json // []
+    isNotSkipped          Boolean
+    card                  Card?   @relation(fields: [cardId], references: [id])
+    cardId                String?
 
-  @@map("card_episodes")
+    @@map("card_episodes")
 }
 
 model Card {
-  id String @id
+    id String @id
 
-  userId                BigInt
-  cardId                Int
-  level                 Int
-  exp                   Int
-  totalExp              Int
-  skillLevel            Int
-  skillExp              Int
-  totalSkillExp         Int
-  masterRank            Int
-  specialTrainingStatus String // not_doing
-  defaultImage          String // original
-  duplicateCount        Int
-  createdAt             DateTime      @default(now())
-  episodes              CardEpisode[]
+    userId                BigInt
+    cardId                Int
+    level                 Int
+    exp                   Int
+    totalExp              Int
+    skillLevel            Int
+    skillExp              Int
+    totalSkillExp         Int
+    masterRank            Int
+    specialTrainingStatus String // not_doing
+    defaultImage          String // original
+    duplicateCount        Int
+    createdAt             DateTime      @default(now())
+    episodes              CardEpisode[]
 
-  @@map("cards")
+    @@map("cards")
 }
 
 /**
@@ -258,39 +260,39 @@ model Card {
  */
 
 model UserDeck {
-  uniqueDeckId String @id
+    uniqueDeckId String @id
 
-  userId       BigInt
-  deckId       Int
-  name         String
-  members      Int[] // member1, member2, member3, member4, member5
-  userGameData UserGameData? @relation(fields: [userId], references: [userId])
+    userId       BigInt
+    deckId       Int
+    name         String
+    members      Int[] // member1, member2, member3, member4, member5
+    userGameData UserGameData? @relation(fields: [userId], references: [userId])
 
-  @@map("user_decks")
+    @@map("user_decks")
 }
 
 model UserCharacter {
-  uniqueCharacterId String        @id
-  userId            BigInt
-  characterId       Int
-  characterRank     Int           @default(1)
-  exp               Int           @default(0)
-  totalExp          Int           @default(0)
-  userGameData      UserGameData? @relation(fields: [userId], references: [userId])
+    uniqueCharacterId String        @id
+    userId            BigInt
+    characterId       Int
+    characterRank     Int           @default(1)
+    exp               Int           @default(0)
+    totalExp          Int           @default(0)
+    userGameData      UserGameData? @relation(fields: [userId], references: [userId])
 
-  @@map("user_characters")
+    @@map("user_characters")
 }
 
 model UserMusic {
-  uniqueMusicId String @id
+    uniqueMusicId String @id
 
-  userId  BigInt
-  musicId Int
+    userId  BigInt
+    musicId Int
 
-  vocals                Int[]
-  availableDifficulties String[] @default(["easy", "normal", "hard", "expert"]) // manually add append. master upon unlock.
+    vocals                Int[]
+    availableDifficulties String[] @default(["easy", "normal", "hard", "expert"]) // manually add append. master upon unlock.
 
-  createdAt    DateTime      @default(now())
-  updatedAt    DateTime      @updatedAt
-  userGameData UserGameData? @relation(fields: [userId], references: [userId])
+    createdAt    DateTime      @default(now())
+    updatedAt    DateTime      @updatedAt
+    userGameData UserGameData? @relation(fields: [userId], references: [userId])
 }

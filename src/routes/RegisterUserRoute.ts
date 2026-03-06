@@ -10,22 +10,19 @@ import { readFileSync } from 'fs';
 import { randomUUID } from 'crypto';
 import { UNITS } from '../consts/GameDataCons';
 import { generateUpdatedResources } from '../utils/updatedResources';
+import { z } from 'zod';
 
 const initialAreas = JSON.parse(readFileSync('./json/initialUserAreas.json', 'utf-8'));
 
-type RegisterUserPayload = {
-    platform: string;
-    deviceModel: string;
-    operatingSystem: string;
-};
+const RegisterUserSchema = z.object({
+    platform: z.string(),
+    deviceModel: z.string(),
+    operatingSystem: z.string(),
+});
 
 export default async function RegisterUserRoute(req: Request, res: Response) {
-    const { body } = req;
-    if (
-        typeof body.platform !== 'string' ||
-        typeof body.deviceModel !== 'string' ||
-        typeof body.operatingSystem !== 'string'
-    ) {
+    const parsed = RegisterUserSchema.safeParse(req.body);
+    if (!parsed.success) {
         return res.status(422).send(
             encrypt({
                 httpStatus: 422,
@@ -35,7 +32,7 @@ export default async function RegisterUserRoute(req: Request, res: Response) {
         );
     }
 
-    const { platform, deviceModel, operatingSystem }: RegisterUserPayload = body;
+    const { platform, deviceModel, operatingSystem } = parsed.data;
 
     const user = await prisma.user.create({
         data: {

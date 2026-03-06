@@ -45,6 +45,10 @@ export async function generateUpdatedResources(userId: number | bigint) {
         deviceModel: user.deviceModel,
         operatingSystem: user.operatingSystem,
         registeredAt: user.registeredAt,
+        yearOfBirth: user.birthdate?.getFullYear(),
+        monthOfBirth: user.birthdate ? user.birthdate?.getMonth() + 1 : null,
+        dayOfBirth: user.birthdate?.getDate(),
+        age: user.birthdate ? (Date.now() - user.birthdate.getTime()) / 1000 / 60 / 60 / 24 / 365 : null
     };
 
     const userCards = cards.map((card) => ({

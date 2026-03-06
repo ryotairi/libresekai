@@ -2,10 +2,15 @@ import { Request, Response } from "express";
 import { encrypt } from "../utils/crypt";
 import { prisma } from "../services/prisma";
 import { generateUpdatedResources } from "../utils/updatedResources";
+import { z } from "zod";
+
+const SetTutorialStatusSchema = z.object({
+    tutorialStatus: z.string(),
+});
 
 export default async function SetTutorialStatusRoute(req: Request, res: Response) {
-    const { body } = req.body;
-    if (typeof body.tutorialStatus !== 'string') {
+    const parsed = SetTutorialStatusSchema.safeParse(req.body);
+    if (!parsed.success) {
         return res.status(422).send(
             encrypt({
                 httpStatus: 422,
@@ -16,10 +21,10 @@ export default async function SetTutorialStatusRoute(req: Request, res: Response
     }
 
     if (req.params.userId !== req.userId?.toString()) {
-        return res.status(422).send(
+        return res.status(403).send(
             encrypt({
-                httpStatus: 422,
-                errorCode: '',
+                httpStatus: 403,
+                errorCode: 'session_error',
                 errorMessage: ''
             })
         );
@@ -30,7 +35,7 @@ export default async function SetTutorialStatusRoute(req: Request, res: Response
 
     await prisma.user.update({
         where: { userId: req.userId! },
-        data: { tutorialStatus: body.tutorialStatus }
+        data: { tutorialStatus: parsed.data.tutorialStatus }
     });
 
     // iirc it should be like that
