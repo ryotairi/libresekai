@@ -42,13 +42,13 @@ export default async function StartLive(req: Request, res: Response) {
 
     const user = await prisma.user.findFirst({
         where: {
-            userId: BigInt(userId!)
+            userId: userId!
         }
     });
 
     const live = await prisma.userLive.create({
         data: {
-            userId: BigInt(userId!),
+            userId: userId!,
             liveId: crypto.randomUUID(),
             boostCount: body.boostCount,
             deckId: body.deckId,
@@ -61,12 +61,12 @@ export default async function StartLive(req: Request, res: Response) {
 
     await prisma.user.update({
         where: {
-            userId: BigInt(userId!)
+            userId: userId!
         },
         data: {
             userLive: {
                 connect: {
-                    userId: BigInt(userId!)
+                    userId: userId!
                 }
             },
             userLiveId: live.liveId,

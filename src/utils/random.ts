@@ -1,9 +1,9 @@
 import { randomInt } from "crypto";
 
-export function generateUserId(): number | bigint {
+export function generateUserId(): number {
     var str = '';
-    for (let i = 0; i < 12; i++) {
+    for (let i = 0; i < 18; i++) {
         str += randomInt(10).toString();
     }
-    return BigInt(str);
+    return parseInt(str);
 }
