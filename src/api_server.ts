@@ -15,11 +15,16 @@ import SuiteMasterFileRoute from './routes/SuiteMasterFileRoute';
 
 const api = express();
 
+api.use(express.raw({ type: 'application/octet-stream' }));
+
 api.use(AuthenticationMiddleware);
 
 api.use((req, res, next) => {
     if (req.headers['content-type'] === 'application/octet-stream') {
         const buffer = req.body as Buffer;
+        if (!buffer || buffer.length === 0) {
+            return next();
+        }
         const decryptedMsgPack = decrypt(buffer);
         req.body = decryptedMsgPack;
     }
