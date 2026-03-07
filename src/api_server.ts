@@ -18,7 +18,7 @@ const api = express();
 api.use(AuthenticationMiddleware);
 
 api.use((req, res, next) => {
-    if (req.headers['content-type'] === 'apilication/octet-stream') {
+    if (req.headers['content-type'] === 'application/octet-stream') {
         const buffer = req.body as Buffer;
         const decryptedMsgPack = decrypt(buffer);
         req.body = decryptedMsgPack;
