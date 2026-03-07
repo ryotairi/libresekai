@@ -1,8 +1,9 @@
 import express from 'express';
 import { config } from './config';
 import { matchAssetDomain } from './utils/assetDomain';
-import { readFileSync } from 'fs';
+import { existsSync, readFileSync, realpathSync, writeFileSync } from 'fs';
 import { encrypt } from './utils/crypt';
+import logger from './services/logger';
 
 const android = JSON.parse(readFileSync('assets/android.json', 'utf-8'));
 
@@ -37,9 +38,9 @@ app.get('/api/version/:version/os/:platform', (req, res) => {
     );
 });
 
-app.get('/:version/:hash/:platform/*', (req, res) => {
+app.get('/:version/:hash/:platform/*', async (req, res) => {
     const { version, hash, platform } = req.params;
-    const assetPath = req.params[''] ? req.params[''].join('/') : ''; // everything after /:version/:hash/:platform/
+    const assetPath = req.params[''] ? req.params[''].join('/').split('?')[0] : ''; // everything after /:version/:hash/:platform/
 
     if (req.assetDomain?.type !== 'assetbundleUrl' || platform !== 'android' || version !== config.versions[config.latestVersion].appVersion) {
         return res.status(404).send(
@@ -50,8 +51,25 @@ app.get('/:version/:hash/:platform/*', (req, res) => {
             })
         );
     }
-    
-    // TODO: either serve from /assets , or download from official servers
+
+    const isStoredLocally = existsSync(`assets/${assetPath}`);
+    if (!isStoredLocally) {
+        try {
+            const date = new Date();
+            const mo = `0${date.getMonth() + 1}`;
+            const t = `${date.getFullYear()}${mo.substring(mo.length - 2, mo.length)}${date.getDate()}${date.getHours()}${date.getMinutes()}${date.getSeconds()}`;
+            const f = await fetch(`${config.upstreamAssetUrl}/${platform}/${assetPath}?t=${t}`);
+            if (!f.ok) throw new Error(`${f.status} ${f.statusText}: ${await f.text()}`);
+
+            const buffer = Buffer.from(await f.arrayBuffer());
+            writeFileSync(`assets/${assetPath}`, buffer);
+            logger.info(`Successfully downloaded: ${assetPath}`);
+        } catch (error: Error | unknown) {
+            logger.error(`Failed to download ${assetPath}.`, error);
+        }
+    }
+
+    res.sendFile(realpathSync(`assets/${assetPath}`));
 });
 
 app.listen(config.assetsPort);

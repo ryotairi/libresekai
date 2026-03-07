@@ -61,6 +61,8 @@ type Config = {
 
     initialFreeCards: number[];
     initialMusics: number[];
+
+    upstreamAssetUrl: string;
 };
 
 const configFile = fs.readFileSync('./config.yml', 'utf-8');
