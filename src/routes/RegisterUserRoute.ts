@@ -4,7 +4,7 @@ import { Request, Response } from 'express';
 import { encrypt } from '../utils/crypt';
 import { prisma } from '../services/prisma';
 import { config } from '../config';
-import { randomCredentialString } from '../utils/credentials';
+import { createCredential, createSignature } from '../utils/credentials';
 import { generateUserId } from '../utils/random';
 import { readFileSync } from 'fs';
 import { randomUUID } from 'crypto';
@@ -40,15 +40,16 @@ export default async function RegisterUserRoute(req: Request, res: Response) {
 
     const { platform, deviceModel, operatingSystem } = parsed.data;
 
+    const userId = generateUserId();
     const user = await prisma.user.create({
         data: {
             deviceModel,
             operatingSystem,
             platform,
             name: config.initialPlayerName,
-            credential: randomCredentialString(),
-            signature: randomCredentialString(),
-            userId: generateUserId(),
+            credential: createCredential(userId),
+            signature: createSignature(userId),
+            userId,
             areas: initialAreas,
         },
     });
