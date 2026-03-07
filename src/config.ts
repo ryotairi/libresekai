@@ -37,7 +37,7 @@ type Config = {
     apiPort: number;
     webPort: number;
     versionPort: number;
-    databaseUrl: string;
+    databaseUrl?: string;
     assetsPort: number;
     domains: {
         assetbundleApi: string;
