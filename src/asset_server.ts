@@ -38,9 +38,9 @@ app.get('/api/version/:version/os/:platform', (req, res) => {
     );
 });
 
-app.get('/:version/:hash/:platform/*', async (req, res) => {
+app.get('/:version/:hash/:platform/*assetPath', async (req, res) => {
     const { version, hash, platform } = req.params;
-    const assetPath = req.params[''] ? req.params[''].join('/').split('?')[0] : ''; // everything after /:version/:hash/:platform/
+    const assetPath = Array.isArray(req.params.assetPath) ? req.params.assetPath.join('/') : (req.params.assetPath || '');
 
     if (req.assetDomain?.type !== 'assetbundleUrl' || platform !== 'android' || version !== config.versions[config.latestVersion].appVersion) {
         return res.status(404).send(
