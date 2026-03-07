@@ -5,7 +5,7 @@ const key = Buffer.from('df384214b29a3adfbf1bd9ee5b16f884', 'hex');
 const iv = Buffer.from('7e856c907987f8aec6afc0c54738fc7e', 'hex');
 
 function encrypt(json: any) {
-    const msgpackBuffer = Buffer.from(encode(json));
+    const msgpackBuffer = Buffer.from(encode(json, { useBigInt64: true }));
     const algorithm = key.length === 32 ? 'aes-256-cbc' : 'aes-128-cbc';
     const cipher = crypto.createCipheriv(algorithm, key, iv);
 

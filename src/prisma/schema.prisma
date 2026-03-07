@@ -42,7 +42,7 @@ enum PlayResult {
 }
 
 model User {
-    userId     Int @unique
+    userId     BigInt @unique
     credential String
 
     signature       String
@@ -62,15 +62,15 @@ model User {
     areas Json
 
     name                  String
-    userGameDataUserId    Int?
-    userBoostStatusUserId Int?
+    userGameDataUserId    BigInt?
+    userBoostStatusUserId BigInt?
     userLive              UserLive?
 
     @@map("users")
 }
 
 model UserLive {
-    userId Int @unique
+    userId BigInt @unique
 
     liveId String
 
@@ -98,7 +98,7 @@ model UserLive {
 }
 
 model UserBoostStatus {
-    userId     Int   @unique
+    userId     BigInt   @unique
     current    Int
     recoveryAt DateTime
     users      User[]
@@ -125,7 +125,7 @@ model UserBoostStatus {
 model UserMusicResult {
     uniqueResultId String @id
 
-    userId          Int
+    userId          BigInt
     musicId         Int
     musicDifficulty MusicDifficulty
     playType        PlayTime        @default(solo)
@@ -143,7 +143,7 @@ model UserMusicResult {
 }
 
 model UserGameData {
-    userId Int @unique
+    userId BigInt @unique
 
     deck        Int @default(1)
     rank        Int @default(1)
@@ -165,13 +165,13 @@ model UserGameData {
 model UserUnit {
     uniqueUnitId String @id
 
-    userId             Int
+    userId             BigInt
     unit               Unit
     rank               Int           @default(1)
     exp                Int           @default(0)
     totalExp           Int           @default(0)
     userGameData       UserGameData? @relation(fields: [userGameDataUserId], references: [userId])
-    userGameDataUserId Int?
+    userGameDataUserId BigInt?
 
     @@map("user_units")
 }
@@ -226,7 +226,7 @@ model CardEpisode {
 model Card {
     id String @id
 
-    userId                Int
+    userId                BigInt
     cardId                Int
     level                 Int
     exp                   Int
@@ -262,7 +262,7 @@ model Card {
 model UserDeck {
     uniqueDeckId String @id
 
-    userId       Int
+    userId       BigInt
     deckId       Int
     name         String
     members      Int[] // member1, member2, member3, member4, member5
@@ -273,7 +273,7 @@ model UserDeck {
 
 model UserCharacter {
     uniqueCharacterId String        @id
-    userId            Int
+    userId            BigInt
     characterId       Int
     characterRank     Int           @default(1)
     exp               Int           @default(0)
@@ -286,7 +286,7 @@ model UserCharacter {
 model UserMusic {
     uniqueMusicId String @id
 
-    userId  Int
+    userId  BigInt
     musicId Int
 
     vocals                Int[]

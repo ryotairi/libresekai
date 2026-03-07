@@ -1,12 +1,12 @@
 type UserDeck = {
-    userId: bigint | number;
+    userId: bigint;
     deckId: number;
     name: string;
     members: number[]; // member1, member2, member3, member4, member5
 };
 
 type SekaiPayloadUserDeck = {
-    userId: bigint | number;
+    userId: bigint;
     deckId: number;
     name: string;
     leader: number;

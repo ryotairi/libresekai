@@ -5,7 +5,7 @@ import { config } from '../config';
 import { DIFFICULTIES } from '../consts/MusicCons';
 import { convertDeckToSekaiDeck } from './payloads';
 
-export async function generateUpdatedResources(userId: number) {
+export async function generateUpdatedResources(userId: bigint) {
     const user = await prisma.user.findUniqueOrThrow({
         where: { userId },
     });
