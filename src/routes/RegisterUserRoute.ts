@@ -146,7 +146,7 @@ export default async function RegisterUserRoute(req: Request, res: Response) {
         platform: user.platform,
         deviceModel: user.deviceModel,
         operatingSystem: user.operatingSystem,
-        registeredAt: user.registeredAt,
+        registeredAt: user.registeredAt.getTime(),
     };
 
     const updatedResources = await generateUpdatedResources(user.userId);

@@ -44,7 +44,7 @@ export async function generateUpdatedResources(userId: bigint) {
         platform: user.platform,
         deviceModel: user.deviceModel,
         operatingSystem: user.operatingSystem,
-        registeredAt: user.registeredAt,
+        registeredAt: user.registeredAt.getTime(),
         yearOfBirth: user.birthdate?.getFullYear(),
         monthOfBirth: user.birthdate ? user.birthdate?.getMonth() + 1 : null,
         dayOfBirth: user.birthdate?.getDate(),
@@ -64,7 +64,7 @@ export async function generateUpdatedResources(userId: bigint) {
         specialTrainingStatus: card.specialTrainingStatus,
         defaultImage: card.defaultImage,
         duplicateCount: card.duplicateCount,
-        createdAt: Math.floor(card.createdAt.getTime() / 1000),
+        createdAt: card.createdAt.getTime(),
         episodes: [],
     }));
 
@@ -83,8 +83,8 @@ export async function generateUpdatedResources(userId: bigint) {
         })),
         userMusicVocals: [],
         userMusicAchievements: [],
-        createdAt: Math.floor(music.createdAt.getTime() / 1000),
-        updatedAt: Math.floor(music.updatedAt.getTime() / 1000),
+        createdAt: music.createdAt.getTime(),
+        updatedAt: music.updatedAt.getTime(),
     }));
 
     const userCharacters = characters.map((x) => ({
@@ -124,7 +124,7 @@ export async function generateUpdatedResources(userId: bigint) {
         },
         userBoost: {
             current: boostData.current,
-            recoveryAt: Math.floor(boostData.recoveryAt.getTime() / 1000),
+            recoveryAt: boostData.recoveryAt.getTime(),
         },
         userTutorial: {
             tutorialStatus: user.tutorialStatus,
