@@ -11,6 +11,7 @@ import { randomUUID } from 'crypto';
 import { UNITS } from '../consts/GameDataCons';
 import { generateUpdatedResources } from '../utils/updatedResources';
 import { z } from 'zod';
+import logger from '../services/logger';
 
 const initialAreas = JSON.parse(readFileSync('./json/initialUserAreas.json', 'utf-8'));
 
@@ -23,6 +24,11 @@ const RegisterUserSchema = z.object({
 export default async function RegisterUserRoute(req: Request, res: Response) {
     const parsed = RegisterUserSchema.safeParse(req.body);
     if (!parsed.success) {
+        logger.error(`Failed to parse RegisterUserRoute payload...`, {
+            body: req.body,
+            headers: req.headers,
+            parsed,
+        });
         return res.status(422).send(
             encrypt({
                 httpStatus: 422,
