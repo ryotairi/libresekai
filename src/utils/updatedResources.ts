@@ -25,6 +25,13 @@ export async function generateUpdatedResources(userId: bigint) {
         }
     });
 
+    const shops = await prisma.userShop.findMany({
+        where: { userId },
+        include: {
+            userShopItems: true
+        }
+    });
+
     const boostData = await prisma.userBoostStatus.findUniqueOrThrow({
         where: { userId },
     });
@@ -162,7 +169,14 @@ export async function generateUpdatedResources(userId: bigint) {
         userMusics,
         userMusicResults: [],
         userMusicAchievements: [],
-        userShops: [],
+        userShops: shops.map((x) => ({
+            shopId: x.shopId,
+            userShopItems: x.userShopItems.map((item) => ({
+                shopItemId: item.shopItemId,
+                level: item.level,
+                status: item.status,
+            })),
+        })),
         userUnitEpisodeStatuses: [],
         userSpecialEpisodeStatuses: [],
         userEventEpisodeStatuses: [],

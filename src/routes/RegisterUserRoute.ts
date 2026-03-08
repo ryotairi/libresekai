@@ -14,6 +14,7 @@ import { z } from 'zod';
 import logger from '../services/logger';
 
 const initialAreas = JSON.parse(readFileSync('./json/initialUserAreas.json', 'utf-8'));
+const reg = JSON.parse(readFileSync('./json/registered.json', 'utf-8'));
 
 const RegisterUserSchema = z.object({
     platform: z.string(),
@@ -139,6 +140,24 @@ export default async function RegisterUserRoute(req: Request, res: Response) {
                 uniqueMusicId: randomUUID(),
                 vocals: config.initialMusicsVocals.find(x => x.musicId === musicId)?.vocals,
                 availableDifficulties: ['easy', 'normal', 'hard', 'expert'],
+            },
+        });
+    }
+
+    for (const shop of reg.updatedResources.userShops) {
+        await prisma.userShop.create({
+            data: {
+                userId: user.userId,
+                shopId: shop.shopId,
+                userShopItems: {
+                    createMany: {
+                        data: shop.userShopItems.map((item: { shopItemId: number; status: string; level?: number }) => ({
+                            shopItemId: item.shopItemId,
+                            status: item.status,
+                            level: item.level
+                        })),
+                    },
+                },
             },
         });
     }

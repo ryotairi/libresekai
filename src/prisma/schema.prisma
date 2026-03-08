@@ -158,6 +158,7 @@ model UserGameData {
     areas      UserArea[]
     users      User[]
     stamps     UserStamp[]
+    shops      UserShop[]
 
     @@map("users_game_data")
 }
@@ -168,8 +169,8 @@ model UserStamp {
     stampId    Int
     obtainedAt DateTime @default(now())
 
-    userGameData       UserGameData @relation(fields: [userId], references: [userId])
-    userId BigInt @map("userGameDataUserId")
+    userGameData UserGameData @relation(fields: [userId], references: [userId])
+    userId       BigInt       @map("userId")
 
     @@map("user_stamps")
 }
@@ -195,6 +196,30 @@ model UserArea {
     areaPlaylistStatusId   String?
 
     @@map("user_areas")
+}
+
+model UserShop {
+    id String @id @default(cuid())
+
+    shopId        Int
+    userShopItems UserShopItem[]
+    userGameData  UserGameData?  @relation(fields: [userId], references: [userId])
+    userId        BigInt?        @map("userId")
+
+    @@map("user_shops")
+}
+
+model UserShopItem {
+    id String @id @default(cuid())
+
+    shopItemId Int
+    status     String
+    level      Int?
+
+    userShop   UserShop? @relation(fields: [userShopId], references: [id])
+    userShopId String?
+
+    @@map("user_shop_items")
 }
 
 model UserAreaPlaylistStatus {
