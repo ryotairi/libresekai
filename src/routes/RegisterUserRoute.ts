@@ -103,12 +103,13 @@ export default async function RegisterUserRoute(req: Request, res: Response) {
         };
 
         if (area.userAreaStatus.userAreaPlaylistStatus) {
-            userAreaData.userAreaPlaylistStatus = {
-                create: {
+            const playlistStatus = await prisma.userAreaPlaylistStatus.create({
+                data: {
                     areaPlaylistId: area.userAreaStatus.userAreaPlaylistStatus.areaPlaylistId,
                     status: area.userAreaStatus.userAreaPlaylistStatus.status,
                 },
-            };
+            });
+            userAreaData.areaPlaylistStatusId = playlistStatus.id;
         }
 
         await prisma.userArea.create({
