@@ -50,7 +50,6 @@ export default async function RegisterUserRoute(req: Request, res: Response) {
             credential: createCredential(userId),
             signature: createSignature(userId),
             userId,
-            areas: initialAreas,
         },
     });
 
@@ -91,6 +90,29 @@ export default async function RegisterUserRoute(req: Request, res: Response) {
                 defaultImage: 'original',
                 duplicateCount: 0,
             },
+        });
+    }
+
+    for (const area of initialAreas) {
+        const userAreaData: any = {
+            areaId: area.areaId,
+            actionSets: area.actionSets,
+            areaItems: area.areaItems,
+            status: area.userAreaStatus.status,
+            userId: user.userId,
+        };
+
+        if (area.userAreaStatus.userAreaPlaylistStatus) {
+            userAreaData.userAreaPlaylistStatus = {
+                create: {
+                    areaPlaylistId: area.userAreaStatus.userAreaPlaylistStatus.areaPlaylistId,
+                    status: area.userAreaStatus.userAreaPlaylistStatus.status,
+                },
+            };
+        }
+
+        await prisma.userArea.create({
+            data: userAreaData,
         });
     }
 

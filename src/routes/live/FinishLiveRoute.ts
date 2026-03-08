@@ -21,7 +21,7 @@ const FinishLiveSchema = z.object({
     ingameCutinCharacterArchiveVoiceGroupIds: z.array(z.any()),
 });
 
-export default async function FinishLive(req: Request, res: Response) {
+export default async function FinishLiveRoute(req: Request, res: Response) {
     const { userId } = req;
 
     const parsed = FinishLiveSchema.safeParse(req.body);

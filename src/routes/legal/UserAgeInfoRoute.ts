@@ -13,14 +13,25 @@ export default async function UserAgeInfoRoute(req: Request, res: Response) {
         );
     }
 
-    const user = (await prisma.user.findFirst({ where: { userId: req.userId! } }))!;
+    const user = await prisma.user.findFirst({ where: { userId: req.userId! } });
+
+    if (!user) {
+        return res.status(403).send(
+            encrypt({
+                httpStatus: 403,
+                errorCode: 'session_error',
+                errorMessage: ''
+            })
+        );
+    }
+
     res.send(
         encrypt({
             userId: user.userId,
             yearOfBirth: user.birthdate?.getFullYear(),
             monthOfBirth: user.birthdate ? user.birthdate?.getMonth() + 1 : null,
             dayOfBirth: user.birthdate?.getDate(),
-            age: user.birthdate ? (Date.now() - user.birthdate.getTime()) / 1000 / 60 / 60 / 24 / 365 : null
+            age: user.birthdate ? Math.floor((Date.now() - user.birthdate.getTime()) / 1000 / 60 / 60 / 24 / 365) : null
         })
     );
 }

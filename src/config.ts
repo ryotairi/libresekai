@@ -68,6 +68,7 @@ type Config = {
     initialFreeCards: number[];
     initialMusics: number[];
     initialMusicsVocals: VocalData[];
+    initialStamps: number[];
 
     upstreamAssetUrl: string;
 };

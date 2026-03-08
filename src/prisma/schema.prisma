@@ -59,8 +59,6 @@ model User {
     tutorialStatus String           @default("start")
     userLiveId     String?
 
-    areas Json
-
     name                  String
     userGameDataUserId    BigInt?
     userBoostStatusUserId BigInt?
@@ -157,13 +155,61 @@ model UserGameData {
     characters UserCharacter[]
     units      UserUnit[]
     musics     UserMusic[]
+    areas      UserArea[]
     users      User[]
+    stamps     UserStamp[]
 
     @@map("users_game_data")
 }
 
+model UserStamp {
+    id String @id @default(cuid())
+
+    stampId    Int
+    obtainedAt DateTime @default(now())
+
+    userGameData       UserGameData @relation(fields: [userId], references: [userId])
+    userId BigInt @map("userGameDataUserId")
+
+    @@map("user_stamps")
+}
+
+enum UserAreaStatus {
+    released
+    unreleased
+}
+
+model UserArea {
+    id String @id @default(cuid())
+
+    userGameData UserGameData @relation(fields: [userId], references: [userId])
+    userId       BigInt
+
+    status UserAreaStatus
+    areaId Int
+
+    actionSets Json[]
+    areaItems  Json[]
+
+    userAreaPlaylistStatus UserAreaPlaylistStatus? @relation(fields: [areaPlaylistStatusId], references: [id])
+    areaPlaylistStatusId   String?
+
+    @@map("user_areas")
+}
+
+model UserAreaPlaylistStatus {
+    id String @id @default(cuid())
+
+    areaPlaylistId Int
+    status         String // It is string in Sekai.UserAreaPlaylistStatus(0x2000F1C)#status(0x400320B,0x18)
+
+    userAreas UserArea[]
+
+    @@map("area_playlist_statuses")
+}
+
 model UserUnit {
-    uniqueUnitId String @id
+    uniqueUnitId String @id @default(cuid())
 
     userId             BigInt
     unit               Unit

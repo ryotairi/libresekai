@@ -14,7 +14,7 @@ const StartLiveSchema = z.object({
     musicCategoryName: z.string(),
 });
 
-export default async function StartLive(req: Request, res: Response) {
+export default async function StartLiveRoute(req: Request, res: Response) {
     const { userId } = req;
 
     const parsed = StartLiveSchema.safeParse(req.body);

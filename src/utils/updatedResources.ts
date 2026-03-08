@@ -10,8 +10,19 @@ export async function generateUpdatedResources(userId: bigint) {
         where: { userId },
     });
 
+    const stamps = await prisma.userStamp.findMany({
+        where: { userId },
+    });
+
     const gameData = await prisma.userGameData.findUniqueOrThrow({
         where: { userId },
+    });
+
+    const areas = await prisma.userArea.findMany({
+        where: { userId },
+        include: {
+            userAreaPlaylistStatus: true
+        }
     });
 
     const boostData = await prisma.userBoostStatus.findUniqueOrThrow({
@@ -131,7 +142,21 @@ export async function generateUpdatedResources(userId: bigint) {
         userTutorial: {
             tutorialStatus: user.tutorialStatus,
         },
-        userAreas: user.areas,
+        userAreas: areas.map((x) => ({
+            areaId: x.areaId,
+            areaItems: x.areaItems,
+            actionSets: x.actionSets,
+            userAreaStatus: {
+                areaId: x.areaId,
+                status: x.status,
+                ...(x.userAreaPlaylistStatus ? {
+                    userAreaPlaylistStatus: {
+                        areaPlaylistId: x.userAreaPlaylistStatus.areaPlaylistId,
+                        status: x.userAreaPlaylistStatus.status
+                    }
+                } : {})
+            }
+        })),
         userCards,
         userDecks,
         userMusics,
@@ -152,7 +177,10 @@ export async function generateUpdatedResources(userId: bigint) {
         userReleaseConditions: [],
         unreadUserTopics: [],
         userHomeBanners: [],
-        userStamps: [],
+        userStamps: stamps.map((x) => ({
+            stampId: x.stampId,
+            obtainedAt: x.obtainedAt.getTime(),
+        })),
         userMaterialExchanges: [],
         userGachaCeilExchanges: [],
         userCharacters,
