@@ -223,7 +223,7 @@ export async function generateUpdatedResources(userId: bigint) {
             shopId: x.shopId,
             userShopItems: x.userShopItems.map((item) => ({
                 shopItemId: item.shopItemId,
-                level: item.level,
+                level: item.level ?? undefined,
                 status: item.status,
             })),
         })),
