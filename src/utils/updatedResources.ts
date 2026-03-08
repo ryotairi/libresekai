@@ -4,6 +4,9 @@ import { prisma } from '../services/prisma';
 import { config } from '../config';
 import { DIFFICULTIES } from '../consts/MusicCons';
 import { convertDeckToSekaiDeck } from './payloads';
+import { readFileSync } from 'node:fs';
+
+const reg = JSON.parse(readFileSync('./json/registered.json', 'utf-8'));
 
 export async function generateUpdatedResources(userId: bigint) {
     const user = await prisma.user.findUniqueOrThrow({
@@ -256,12 +259,12 @@ export async function generateUpdatedResources(userId: bigint) {
         userEventArchiveCompleteReadRewards: gameData.eventArchiveCompleteReadRewards,
         userUnits,
         userPresents: [],
-        userCostume3dStatuses: [],
-        userCostume3dShopItems: [],
-        userCharacterCostume3ds: [],
-        userReleaseConditions: [],
-        unreadUserTopics: [],
-        userHomeBanners: [],
+        // userCostume3dStatuses: [],
+        // userCostume3dShopItems: [],
+        // userCharacterCostume3ds: [],
+        // userReleaseConditions: [],
+        // unreadUserTopics: [],
+        // userHomeBanners: [],
         userStamps: stamps.map((x) => ({
             stampId: x.stampId,
             obtainedAt: x.obtainedAt.getTime(),
@@ -276,28 +279,28 @@ export async function generateUpdatedResources(userId: bigint) {
             exchangeRemaining: x.exchangeRemaining,
             refreshedAt: x.refreshedAt.getTime(),
         })),
-        userGachaCeilExchanges: [],
+        // userGachaCeilExchanges: [],
         userCharacters,
-        userCharacterMissionV2s: [],
-        userCharacterMissionV2Statuses: [],
+        // userCharacterMissionV2s: [],
+        // userCharacterMissionV2Statuses: [],
         userBeginnerMissionBehavior: {
             userBeginnerMissionBehaviorType: 'beginner_mission_v2',
         },
-        userMissionStatuses: [],
-        userEventMissions: [],
+        // userMissionStatuses: [],
+        // userEventMissions: [],
         userProfile: {
             userId: user.userId,
             profileImageType: 'leader',
         },
-        userHonorMissions: [],
-        userVirtualShops: [],
-        userArchiveVirtualLiveReleaseStatuses: [],
+        // userHonorMissions: [],
+        // userVirtualShops: [],
+        // userArchiveVirtualLiveReleaseStatuses: [],
         userAvatar: {
             avatarSkinColorId: 1,
         },
         userAvatarCostumes: [{ avatarCostumeId: 1 }],
-        userAvatarMotions: [],
-        userAvatarMotionFavorites: [],
+        // userAvatarMotions: [],
+        // userAvatarMotionFavorites: [],
         userAvatarSkinColors: [{ avatarSkinColorId: 1 }],
         userRankMatchResult: {
             liveId: '',
@@ -312,5 +315,6 @@ export async function generateUpdatedResources(userId: bigint) {
         userRecommendgls: [],
         userInformations: config.informations,
         userPenlights: [{ penlightId: 1, favoriteFlg: true }],
+        ...reg.updatedResources
     };
 }
