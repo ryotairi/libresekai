@@ -172,10 +172,11 @@ export async function generateUpdatedResources(userId: bigint) {
     });
 
     return {
+        ...reg.updatedResources,
         now: Date.now(),
         refreshableTypes: [],
         userRegistration,
-        userLiveId: user.userLiveId,
+        userLiveId: user.userLiveId ?? undefined,
         userGamedata: {
             userId: user.userId,
             name: user.name,
@@ -314,7 +315,6 @@ export async function generateUpdatedResources(userId: bigint) {
         userUnprocessedOrders: [],
         userRecommendgls: [],
         userInformations: config.informations,
-        userPenlights: [{ penlightId: 1, favoriteFlg: true }],
-        ...reg.updatedResources
+        userPenlights: [{ penlightId: 1, favoriteFlg: true }]
     };
 }
