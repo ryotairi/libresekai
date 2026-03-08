@@ -1,7 +1,7 @@
 # LibreSekai: An implementation of Project SEKAI's backend API
 
 > [!CAUTION]
-> Development is probably halted for a few months. Contact me if you wanna contribute or become a maintainer. Also you might check out my notes about reverse engineering the game, the link is below.
+> Discontinued in favour of [backstage](https://github.com/ryotairi/backstage)
 
 **Please note: this project is still WIP. You may find some garbage files with random request/response contents, etc. [You may check out my notes about this API.](https://cloud.rustyraven.pw/s/ze6jPp377aB9xJF)**
 

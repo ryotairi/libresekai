@@ -3,9 +3,9 @@ import logger from '../services/logger';
 
 export default function apiLoggerMiddleware(req: Request, res: Response, next: NextFunction) {
     const start = Date.now();
-    const { method, path } = req;
+    const { method, path, host } = req;
 
-    logger.info(`--> ${method} ${path}`);
+    logger.info(`--> ${method} ${host}${path}`);
 
     const originalSend = res.send.bind(res);
     res.send = function (body?: any) {
@@ -13,9 +13,9 @@ export default function apiLoggerMiddleware(req: Request, res: Response, next: N
         const status = res.statusCode;
 
         if (status >= 400) {
-            logger.error(`<-- ${method} ${path} ${status} (${duration}ms)`);
+            logger.error(`<-- ${method} ${host}${path} ${status} (${duration}ms)`);
         } else {
-            logger.info(`<-- ${method} ${path} ${status} (${duration}ms)`);
+            logger.info(`<-- ${method} ${host}${path} ${status} (${duration}ms)`);
         }
 
         return originalSend(body);

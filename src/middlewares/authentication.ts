@@ -25,7 +25,7 @@ export default async function AuthenticationMiddleware(req: Request, res: Respon
 
     const credential = req.headers['x-session-token'] as string;
     if (!credential) {
-        return res.status(401).json(
+        return res.status(401).send(
             encrypt({
                 httpStatus: 401,
                 errorCode: '',
@@ -41,7 +41,7 @@ export default async function AuthenticationMiddleware(req: Request, res: Respon
     });
 
     if (!user) {
-        return res.status(401).json(
+        return res.status(401).send(
             encrypt({
                 httpStatus: 401,
                 errorCode: '',

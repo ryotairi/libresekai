@@ -1,7 +1,7 @@
 const { parseBuffer, decrypt } = require("./crypt");
 const fs = require('fs');
 
-// const data = parseBuffer(fs.readFileSync('data.txt', 'utf-8'));
-const data = fs.readFileSync('garbage/data2.txt');
+const data = parseBuffer(fs.readFileSync('garbage/data.txt', 'utf-8'));
+// const data = fs.readFileSync('garbage/data2.txt');
 
 console.log(JSON.stringify(decrypt(data), false, '\t'));

@@ -65,7 +65,7 @@ export async function generateUpdatedResources(userId: bigint) {
         platform: user.platform,
         deviceModel: user.deviceModel,
         operatingSystem: user.operatingSystem,
-        registeredAt: user.registeredAt.getTime(),
+        registeredAt: BigInt(user.registeredAt.getTime()),
         ...(user.birthdate ? {
             yearOfBirth: user.birthdate?.getFullYear(),
             monthOfBirth: user.birthdate?.getMonth() + 1,
@@ -87,7 +87,7 @@ export async function generateUpdatedResources(userId: bigint) {
         specialTrainingStatus: card.specialTrainingStatus,
         defaultImage: card.defaultImage,
         duplicateCount: card.duplicateCount,
-        createdAt: card.createdAt.getTime(),
+        createdAt: BigInt(card.createdAt.getTime()),
         episodes: [],
     }));
 
@@ -104,10 +104,16 @@ export async function generateUpdatedResources(userId: bigint) {
                 : 'forbidden',
             userMusicResults: [],
         })),
-        userMusicVocals: [],
+        userMusicVocals: music.vocals.map((x) => ({
+            userId: user.userId,
+            musicId: music.musicId,
+            vocalId: x,
+            createdAt: BigInt(music.createdAt.getTime()),
+            updatedAt: BigInt(music.updatedAt.getTime()),
+        })),
         userMusicAchievements: [],
-        createdAt: music.createdAt.getTime(),
-        updatedAt: music.updatedAt.getTime(),
+        createdAt: BigInt(music.createdAt.getTime()),
+        updatedAt: BigInt(music.updatedAt.getTime()),
     }));
 
     const userCharacters = characters.map((x) => ({
@@ -173,7 +179,7 @@ export async function generateUpdatedResources(userId: bigint) {
 
     return {
         ...reg.updatedResources,
-        now: Date.now(),
+        now: BigInt(Date.now()),
         refreshableTypes: [],
         userRegistration,
         userLiveId: user.userLiveId ?? undefined,
@@ -194,7 +200,7 @@ export async function generateUpdatedResources(userId: bigint) {
         },
         userBoost: {
             current: boostData.current,
-            recoveryAt: boostData.recoveryAt.getTime(),
+            recoveryAt: BigInt(boostData.recoveryAt.getTime()),
         },
         userTutorial: {
             tutorialStatus: user.tutorialStatus,
@@ -227,6 +233,7 @@ export async function generateUpdatedResources(userId: bigint) {
                 status: item.status,
             })),
         })),
+        userBonds: [],
         userUnitEpisodeStatuses: unitEpisodeStatuses.map((x) => ({
             storyType: x.storyType,
             episodeId: x.episodeId,
@@ -257,6 +264,12 @@ export async function generateUpdatedResources(userId: bigint) {
             status: x.status,
             isNotSkipped: x.isNotSkipped,
         })),
+        userCardEpisodeStatuses: cardEpisodeStatuses.map((x) => ({
+            storyType: x.storyType,
+            episodeId: x.episodeId,
+            status: x.status,
+            isNotSkipped: x.isNotSkipped,
+        })),
         userEventArchiveCompleteReadRewards: gameData.eventArchiveCompleteReadRewards,
         userUnits,
         userPresents: [],
@@ -268,17 +281,17 @@ export async function generateUpdatedResources(userId: bigint) {
         // userHomeBanners: [],
         userStamps: stamps.map((x) => ({
             stampId: x.stampId,
-            obtainedAt: x.obtainedAt.getTime(),
+            obtainedAt: BigInt(x.obtainedAt.getTime()),
         })),
         userMaterialExchanges: materialExchanges.map((x) => ({
             userId: x.userId,
             materialExchangeId: x.materialExchangeId,
             exchangeCount: x.exchangeCount,
             totalExchangeCount: x.totalExchangeCount,
-            lastExchangedAt: x.lastExchangedAt.getTime(),
+            lastExchangedAt: BigInt(x.lastExchangedAt.getTime()),
             exchangeStatus: x.exchangeStatus,
-            exchangeRemaining: x.exchangeRemaining,
-            refreshedAt: x.refreshedAt.getTime(),
+            exchangeRemaining: x.exchangeRemaining ?? undefined,
+            refreshedAt: BigInt(x.refreshedAt.getTime()),
         })),
         // userGachaCeilExchanges: [],
         userCharacters,
@@ -313,8 +326,19 @@ export async function generateUpdatedResources(userId: bigint) {
         userViewableAppeal: { appealIds: [1] },
         userBillingRefunds: [],
         userUnprocessedOrders: [],
-        userRecommendgls: [],
+        // userRecommendgls: [],
         userInformations: config.informations,
-        userPenlights: [{ penlightId: 1, favoriteFlg: true }]
+        userPenlights: [{ penlightId: 1, favoriteFlg: true }],
+        userMysekaiFixtureGameCharacterPerformanceBonuses: [],
+        userPlatforms: [],
+        userWorldBlooms: [],
+        userWorldBloomSupportDecks: [],
+        userMysekaiBlueprintShopItems: [],
+        userMysekaiReleaseElements: [],
+        userMysekaiVisitSetting: {
+            mysekaiRoomAcceptUserType: 'all'
+        },
+        userMysekaiNormalMissions: [],
+        
     };
 }

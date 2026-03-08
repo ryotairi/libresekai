@@ -4,10 +4,13 @@ import { matchAssetDomain } from './utils/assetDomain';
 import { existsSync, readFileSync, realpathSync, writeFileSync } from 'fs';
 import { encrypt } from './utils/crypt';
 import logger from './services/logger';
+import apiLoggerMiddleware from './middlewares/apiLogger';
 
 const android = JSON.parse(readFileSync('assets/android.json', 'utf-8'));
 
 const app = express();
+
+app.use(apiLoggerMiddleware);
 
 // Middleware to identify which asset domain was requested
 // and extract {0}/{1} placeholders from assetbundleUrl/assetbundleInfoUrl

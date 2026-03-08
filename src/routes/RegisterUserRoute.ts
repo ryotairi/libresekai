@@ -6,7 +6,7 @@ import { prisma } from '../services/prisma';
 import { config } from '../config';
 import { createCredential, createSignature } from '../utils/credentials';
 import { generateUserId } from '../utils/random';
-import { readFileSync } from 'fs';
+import { readFileSync, writeFileSync } from 'fs';
 import { randomUUID } from 'crypto';
 import { UNITS } from '../consts/GameDataCons';
 import { generateUpdatedResources } from '../utils/updatedResources';
@@ -14,7 +14,7 @@ import { z } from 'zod';
 import logger from '../services/logger';
 
 const initialAreas = JSON.parse(readFileSync('./json/initialUserAreas.json', 'utf-8'));
-const reg = JSON.parse(readFileSync('./json/registered.json', 'utf-8'));
+const reg = JSON.parse(readFileSync('./json/reg.json', 'utf-8'));
 
 const RegisterUserSchema = z.object({
     platform: z.string(),
@@ -272,10 +272,12 @@ export default async function RegisterUserRoute(req: Request, res: Response) {
         platform: user.platform,
         deviceModel: user.deviceModel,
         operatingSystem: user.operatingSystem,
-        registeredAt: user.registeredAt.getTime(),
+        registeredAt: BigInt(user.registeredAt.getTime()),
     };
 
     const updatedResources = await generateUpdatedResources(user.userId);
+
+    logger.info(`New registration: ${user.userId} (${JSON.stringify(parsed.data)})`);
 
     res.send(
         encrypt({

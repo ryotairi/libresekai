@@ -5,7 +5,7 @@ import { config } from "../config";
 export default async function GetSystemRoute(req: Request, res: Response) {
     res.contentType('application/octet-stream').send(
         encrypt({
-            serverDate: Date.now(),
+            serverDate: BigInt(Date.now()),
             timezone: 'UTC',
             profile: 'production',
             maintenanceStatus: config.maintenanceStatus,
