@@ -223,6 +223,28 @@ export default async function RegisterUserRoute(req: Request, res: Response) {
         });
     }
 
+    /*
+    {
+                "userId": "redacted",
+                "materialExchangeId": 2,
+                "exchangeCount": 0,
+                "totalExchangeCount": 0,
+                "exchangeStatus": "exchangeable"
+            },
+            */
+    for (const exchange of reg.updatedResources.userMaterialExchanges) {
+        await prisma.userMaterialExchange.create({
+            data: {
+                userId: user.userId,
+                exchangeCount: 0,
+                materialExchangeId: exchange.materialExchangeId,
+                exchangeStatus: 'exchangeable',
+                exchangeRemaining: exchange.exchangeRemaining,
+                totalExchangeCount: 0,
+            }
+        });
+    }
+
     for (let i = 1; i <= 26; i++) {
         await prisma.userCharacter.create({
             data: {

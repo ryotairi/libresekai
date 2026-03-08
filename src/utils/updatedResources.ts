@@ -164,6 +164,10 @@ export async function generateUpdatedResources(userId: bigint) {
         },
     });
 
+    const materialExchanges = await prisma.userMaterialExchange.findMany({
+        where: { userId }
+    });
+
     return {
         now: Date.now(),
         refreshableTypes: [],
@@ -262,7 +266,16 @@ export async function generateUpdatedResources(userId: bigint) {
             stampId: x.stampId,
             obtainedAt: x.obtainedAt.getTime(),
         })),
-        userMaterialExchanges: [],
+        userMaterialExchanges: materialExchanges.map((x) => ({
+            userId: x.userId,
+            materialExchangeId: x.materialExchangeId,
+            exchangeCount: x.exchangeCount,
+            totalExchangeCount: x.totalExchangeCount,
+            lastExchangedAt: x.lastExchangedAt.getTime(),
+            exchangeStatus: x.exchangeStatus,
+            exchangeRemaining: x.exchangeRemaining,
+            refreshedAt: x.refreshedAt.getTime(),
+        })),
         userGachaCeilExchanges: [],
         userCharacters,
         userCharacterMissionV2s: [],

@@ -151,19 +151,43 @@ model UserGameData {
     virtualCoin Int @default(0)
     crystals    Int @default(10000)
 
-    decks           UserDeck[]
-    characters      UserCharacter[]
-    units           UserUnit[]
-    musics          UserMusic[]
-    areas           UserArea[]
-    users           User[]
-    stamps          UserStamp[]
-    shops           UserShop[]
-    episodeStatuses UserEpisodeStatus[]
+    decks             UserDeck[]
+    characters        UserCharacter[]
+    units             UserUnit[]
+    musics            UserMusic[]
+    areas             UserArea[]
+    users             User[]
+    stamps            UserStamp[]
+    shops             UserShop[]
+    episodeStatuses   UserEpisodeStatus[]
+    materialExchanges UserMaterialExchange[]
 
     eventArchiveCompleteReadRewards Json[]
 
     @@map("users_game_data")
+}
+
+enum ExchangeStatus {
+    exchangeable
+    out_period
+    not_exchangeable
+}
+
+model UserMaterialExchange {
+    id String @id @default(cuid())
+
+    userId             BigInt
+    materialExchangeId Int
+    exchangeCount      Int
+    totalExchangeCount Int
+    lastExchangedAt    DateTime       @default(now())
+    exchangeStatus     ExchangeStatus
+    exchangeRemaining  Int?
+    refreshedAt        DateTime       @default(now())
+
+    userGameData       UserGameData?  @relation(fields: [userId], references: [userId])
+
+    @@map("user_material_exchanges")
 }
 
 model UserStamp {
