@@ -63,6 +63,7 @@ export default async function RegisterUserRoute(req: Request, res: Response) {
             totalExp: 0,
             rank: 1,
             virtualCoin: 0,
+            eventArchiveCompleteReadRewards: reg.updatedResources.userEventArchiveCompleteReadRewards
         },
     });
 
@@ -158,6 +159,66 @@ export default async function RegisterUserRoute(req: Request, res: Response) {
                         })),
                     },
                 },
+            },
+        });
+    }
+
+    for (const ep of reg.updatedResources.userUnitEpisodeStatuses) {
+        await prisma.userEpisodeStatus.create({
+            data: {
+                userId: user.userId,
+                episodeId: ep.episodeId,
+                storyType: 'unit_story',
+                isNotSkipped: false,
+                status: ep.status,
+            },
+        });
+    }
+
+    for (const ep of reg.updatedResources.userSpecialEpisodeStatuses) {
+        await prisma.userEpisodeStatus.create({
+            data: {
+                userId: user.userId,
+                episodeId: ep.episodeId,
+                storyType: 'special_story',
+                isNotSkipped: false,
+                status: ep.status,
+            },
+        });
+    }
+
+    for (const ep of reg.updatedResources.userEventEpisodeStatuses) {
+        await prisma.userEpisodeStatus.create({
+            data: {
+                userId: user.userId,
+                episodeId: ep.episodeId,
+                storyType: 'event_story',
+                isNotSkipped: false,
+                status: ep.status,
+            },
+        });
+    }
+
+    for (const ep of reg.updatedResources.userArchiveEventEpisodeStatuses) {
+        await prisma.userEpisodeStatus.create({
+            data: {
+                userId: user.userId,
+                episodeId: ep.episodeId,
+                storyType: 'archive_event_story',
+                isNotSkipped: false,
+                status: ep.status,
+            },
+        });
+    }
+
+    for (const ep of reg.updatedResources.userCharacterProfileEpisodeStatuses) {
+        await prisma.userEpisodeStatus.create({
+            data: {
+                userId: user.userId,
+                episodeId: ep.episodeId,
+                storyType: 'character_profile_story',
+                isNotSkipped: false,
+                status: ep.status,
             },
         });
     }

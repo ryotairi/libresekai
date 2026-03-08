@@ -151,14 +151,17 @@ model UserGameData {
     virtualCoin Int @default(0)
     crystals    Int @default(10000)
 
-    decks      UserDeck[]
-    characters UserCharacter[]
-    units      UserUnit[]
-    musics     UserMusic[]
-    areas      UserArea[]
-    users      User[]
-    stamps     UserStamp[]
-    shops      UserShop[]
+    decks           UserDeck[]
+    characters      UserCharacter[]
+    units           UserUnit[]
+    musics          UserMusic[]
+    areas           UserArea[]
+    users           User[]
+    stamps          UserStamp[]
+    shops           UserShop[]
+    episodeStatuses UserEpisodeStatus[]
+
+    eventArchiveCompleteReadRewards Json[]
 
     @@map("users_game_data")
 }
@@ -173,6 +176,37 @@ model UserStamp {
     userId       BigInt       @map("userId")
 
     @@map("user_stamps")
+}
+
+enum EpisodeStatus {
+    can_not_read
+    unreleased
+    released
+    already_read
+}
+
+// mata ookunaru kimi ga kimi ni gomen o ageru kazu
+enum StoryType {
+    unit_story
+    special_story
+    card_story
+    character_profile_story
+    event_story
+    archive_event_story
+}
+
+model UserEpisodeStatus {
+    id String @id @default(cuid())
+
+    storyType    StoryType
+    episodeId    Int
+    status       EpisodeStatus
+    isNotSkipped Boolean
+
+    userGameData UserGameData? @relation(fields: [userId], references: [userId])
+    userId       BigInt?       @map("userId")
+
+    @@map("user_episode_statuses")
 }
 
 enum UserAreaStatus {

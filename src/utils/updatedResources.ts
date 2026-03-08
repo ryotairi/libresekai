@@ -182,7 +182,7 @@ export async function generateUpdatedResources(userId: bigint) {
         userEventEpisodeStatuses: [],
         userArchiveEventEpisodeStatuses: [],
         userCharacterProfileEpisodeStatuses: [],
-        userEventArchiveCompleteReadRewards: [],
+        userEventArchiveCompleteReadRewards: gameData.eventArchiveCompleteReadRewards,
         userUnits,
         userPresents: [],
         userCostume3dStatuses: [],
