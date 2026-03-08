@@ -122,6 +122,48 @@ export async function generateUpdatedResources(userId: bigint) {
         totalExp: x.totalExp,
     }));
 
+    const archiveEventEpisodeStatuses = await prisma.userEpisodeStatus.findMany({
+        where: {
+            userId: user.userId,
+            storyType: 'archive_event_story'
+        },
+    });
+
+    const cardEpisodeStatuses = await prisma.userEpisodeStatus.findMany({
+        where: {
+            userId: user.userId,
+            storyType: 'card_story'
+        },
+    });
+
+    const characterProfileEpisodeStatuses = await prisma.userEpisodeStatus.findMany({
+        where: {
+            userId: user.userId,
+            storyType: 'character_profile_story'
+        },
+    });
+
+    const eventEpisodeStatuses = await prisma.userEpisodeStatus.findMany({
+        where: {
+            userId: user.userId,
+            storyType: 'event_story'
+        },
+    });
+
+    const specialEpisodeStatuses = await prisma.userEpisodeStatus.findMany({
+        where: {
+            userId: user.userId,
+            storyType: 'special_story'
+        },
+    });
+
+    const unitEpisodeStatuses = await prisma.userEpisodeStatus.findMany({
+        where: {
+            userId: user.userId,
+            storyType: 'unit_story'
+        },
+    });
+
     return {
         now: Date.now(),
         refreshableTypes: [],
@@ -177,11 +219,36 @@ export async function generateUpdatedResources(userId: bigint) {
                 status: item.status,
             })),
         })),
-        userUnitEpisodeStatuses: [],
-        userSpecialEpisodeStatuses: [],
-        userEventEpisodeStatuses: [],
-        userArchiveEventEpisodeStatuses: [],
-        userCharacterProfileEpisodeStatuses: [],
+        userUnitEpisodeStatuses: unitEpisodeStatuses.map((x) => ({
+            storyType: x.storyType,
+            episodeId: x.episodeId,
+            status: x.status,
+            isNotSkipped: x.isNotSkipped,
+        })),
+        userSpecialEpisodeStatuses: specialEpisodeStatuses.map((x) => ({
+            storyType: x.storyType,
+            episodeId: x.episodeId,
+            status: x.status,
+            isNotSkipped: x.isNotSkipped,
+        })),
+        userEventEpisodeStatuses: eventEpisodeStatuses.map((x) => ({
+            storyType: x.storyType,
+            episodeId: x.episodeId,
+            status: x.status,
+            isNotSkipped: x.isNotSkipped,
+        })),
+        userArchiveEventEpisodeStatuses: archiveEventEpisodeStatuses.map((x) => ({
+            storyType: x.storyType,
+            episodeId: x.episodeId,
+            status: x.status,
+            isNotSkipped: x.isNotSkipped,
+        })),
+        userCharacterProfileEpisodeStatuses: characterProfileEpisodeStatuses.map((x) => ({
+            storyType: x.storyType,
+            episodeId: x.episodeId,
+            status: x.status,
+            isNotSkipped: x.isNotSkipped,
+        })),
         userEventArchiveCompleteReadRewards: gameData.eventArchiveCompleteReadRewards,
         userUnits,
         userPresents: [],
