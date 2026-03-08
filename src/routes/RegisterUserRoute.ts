@@ -114,6 +114,7 @@ export default async function RegisterUserRoute(req: Request, res: Response) {
                 musicId,
                 userId: user.userId,
                 uniqueMusicId: randomUUID(),
+                vocals: config.initialMusicsVocals.find(x => x.musicId === musicId)?.vocals,
                 availableDifficulties: ['easy', 'normal', 'hard', 'expert'],
             },
         });

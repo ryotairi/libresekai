@@ -9,6 +9,11 @@ type GameAppVersion = {
     appVersionStatus: 'available' | 'not_available';
 };
 
+type VocalData = {
+    musicId: number;
+    vocals: number[];
+};
+
 type ApiInformation = {
     id: number;
     seq: number;
@@ -62,6 +67,7 @@ type Config = {
 
     initialFreeCards: number[];
     initialMusics: number[];
+    initialMusicsVocals: VocalData[];
 
     upstreamAssetUrl: string;
 };
